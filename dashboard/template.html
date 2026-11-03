@@ -36,6 +36,7 @@
   html{scroll-behavior:smooth}
   body{
     margin:0;color:var(--text);font-family:var(--sans);
+    min-height:100dvh;
     background:
       radial-gradient(1100px 700px at -10% -12%,rgba(88,116,255,.16),transparent 60%),
       radial-gradient(900px 600px at 108% 108%,rgba(46,196,150,.10),transparent 55%),
@@ -51,11 +52,12 @@
 
   /* ---------------- sidebar ---------------- */
   .sidebar{
-    width:292px;flex:0 0 292px;height:100vh;position:sticky;top:0;
+    width:292px;flex:0 0 292px;height:100dvh;position:sticky;top:0;
     border-right:1px solid var(--line);
     background:linear-gradient(180deg,rgba(10,15,26,.94),rgba(9,13,22,.86));
     backdrop-filter:blur(18px);
-    display:flex;flex-direction:column;padding:26px 20px 18px;overflow-y:auto;
+    display:flex;flex-direction:column;
+    padding:calc(26px + env(safe-area-inset-top)) 20px calc(18px + env(safe-area-inset-bottom));overflow-y:auto;
     z-index:30;
   }
   .sidebar::-webkit-scrollbar{width:6px}
@@ -125,10 +127,10 @@
   .side-foot kbd{font-family:var(--mono);font-size:9.5px;border:1px solid var(--line-strong);border-radius:4px;padding:1px 4px;color:var(--muted)}
 
   /* ---------------- main ---------------- */
-  main{flex:1;min-width:0;padding:0 0 90px}
+  main{flex:1;min-width:0;padding:0 0 calc(90px + env(safe-area-inset-bottom))}
   .topbar{
     display:flex;align-items:center;justify-content:space-between;gap:20px;
-    padding:22px 48px 0;max-width:1180px;
+    padding:calc(22px + env(safe-area-inset-top)) 48px 0;max-width:1180px;
   }
   .crumb{font-size:11px;letter-spacing:.16em;color:var(--faint);text-transform:uppercase}
   .crumb b{color:var(--muted);font-weight:500}
@@ -312,8 +314,9 @@
     .sidebar{position:fixed;left:0;top:0;transform:translateX(-100%);transition:.25s ease;box-shadow:30px 0 60px rgba(0,0,0,.4)}
     .sidebar.open{transform:none}
     .menu-btn{display:block}
-    .topbar{padding:16px 20px 0}
+    .topbar{padding:calc(12px + env(safe-area-inset-top)) 20px 0}
     .wrap{padding:22px 20px 0}
+    .menu-btn{font-size:19px;line-height:1;padding:10px 12px}
     .search{width:180px}
     .hero{padding:28px 22px}
     .map-grid{grid-template-columns:1fr}
