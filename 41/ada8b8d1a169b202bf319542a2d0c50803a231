@@ -1,0 +1,26 @@
+dashboard/index.html
+  h_20a4004d732858 378
+scripts/index.py
+  h_20a4004d732858 183-184,188,191,193-197,530-532
+state/coverage.json
+  h_20a4004d732858 3
+"专题/Mamba 家族/Mamba 家族.md"
+  h_20a4004d732858 41-45
+"专题/Mamba 家族/深挖进度.md"
+  h_20a4004d732858 1-43
+专题索引.md
+  h_20a4004d732858 14-16
+课程/基础/补课-RNN与attention的取舍.md
+  h_20a4004d732858 98-102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "41ada8b8d1a169b202bf319542a2d0c50803a231",
+  "prompts": {},
+  "humans": {
+    "h_20a4004d732858": {
+      "author": "linnea-lin-00638949 <linnea-lin-00638949@users.noreply.github.com>"
+    }
+  }
+}
