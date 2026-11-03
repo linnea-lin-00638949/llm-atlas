@@ -1,0 +1,28 @@
+.gitignore
+  h_20a4004d732858 6
+dashboard/index.html
+  h_20a4004d732858 346,378,384,578,588,648,652
+dashboard/template.html
+  h_20a4004d732858 346,384,578,588,648,652
+scripts/healthcheck.py
+  h_20a4004d732858 13-28,34
+scripts/index.py
+  h_20a4004d732858 133-152,428,462-465,567,619-625,642,651-654,685,689,692
+scripts/publish.sh
+  h_20a4004d732858 6-11
+state/coverage.json
+  h_20a4004d732858 3
+首页.md
+  h_20a4004d732858 33-36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "93cd42c48dbc4c626c04d92f5f242c3db8c5fccd",
+  "prompts": {},
+  "humans": {
+    "h_20a4004d732858": {
+      "author": "linnea-lin-00638949 <linnea-lin-00638949@users.noreply.github.com>"
+    }
+  }
+}
