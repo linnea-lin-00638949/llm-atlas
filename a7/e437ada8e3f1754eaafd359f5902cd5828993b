@@ -1,0 +1,16 @@
+dashboard/index.html
+  h_20a4004d732858 166
+dashboard/template.html
+  h_20a4004d732858 166
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "a7e437ada8e3f1754eaafd359f5902cd5828993b",
+  "prompts": {},
+  "humans": {
+    "h_20a4004d732858": {
+      "author": "linnea-lin-00638949 <linnea-lin-00638949@users.noreply.github.com>"
+    }
+  }
+}
