@@ -3,3 +3,4 @@ _site/
 scratch/
 archive/
 .obsidian/workspace*.json
+.secrets/

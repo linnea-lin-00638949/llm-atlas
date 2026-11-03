@@ -10,12 +10,28 @@ STATE = json.loads((ROOT / "state" / "coverage.json").read_text())
 
 warn, ok = [], []
 course = ROOT / "课程"
-lesson_files = [p for p in course.glob("*/*.md") if p.parent.name != "串讲"]
+import yaml
+
+def note_type(p):
+    try:
+        text = p.read_text(encoding="utf-8")
+        if not text.startswith("---"):
+            return "lesson"
+        head = text[3:text.find("\n---", 3)].strip()
+        meta = yaml.safe_load(head) or {}
+        return str(meta.get("type") or "lesson")
+    except Exception:
+        return "lesson"
+
+all_files = [p for p in course.glob("*/*.md") if p.parent.name != "串讲"]
+lesson_files = [p for p in all_files if note_type(p) != "supplement"]
+supplement_files = [p for p in all_files if note_type(p) == "supplement"]
 review_files = list((course / "串讲").glob("*.md"))
 if STATE["lesson_count"] != len(lesson_files):
     warn.append(f"state.lesson_count={STATE['lesson_count']} 但课程文件={len(lesson_files)}")
 else:
     ok.append(f"课程文件 {len(lesson_files)} 篇与进度一致")
+ok.append(f"补充阅读 {len(supplement_files)} 篇（不计入课程）")
 if STATE["review_count"] != len(review_files):
     warn.append(f"state.review_count={STATE['review_count']} 但串讲文件={len(review_files)}")
 else:

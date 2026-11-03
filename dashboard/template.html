@@ -343,6 +343,7 @@
       <div class="nav-item active" data-view="day"><span class="dot"></span>课程笔记</div>
       <div class="nav-item" data-view="reviews"><span class="dot" style="background:var(--warn);box-shadow:0 0 8px var(--warn)"></span>串讲复习</div>
       <div class="nav-item" data-view="news"><span class="dot" style="background:var(--accent-2);box-shadow:0 0 8px var(--accent-2)"></span>动态简报</div>
+      <div class="nav-item" data-view="supplements"><span class="dot" style="background:#f2a65a;box-shadow:0 0 8px #f2a65a"></span>补充阅读</div>
       <div class="nav-item" data-view="topics"><span class="dot" style="background:#b8a5ff;box-shadow:0 0 8px #b8a5ff"></span>专题</div>
       <div class="nav-item" data-view="map"><span class="dot" style="background:#e879a6;box-shadow:0 0 8px #e879a6"></span>知识地图</div>
     </div>
@@ -380,7 +381,7 @@ const DATA = /*__DATA__*/;
 (function(){
   const $ = s => document.querySelector(s);
   const el = (tag, cls, html) => { const n=document.createElement(tag); if(cls)n.className=cls; if(html!=null)n.innerHTML=html; return n; };
-  const state = { lid: DATA.days[0] ? DATA.days[0].id : null, date: DATA.days[0] ? DATA.days[0].date : null, tab: 'note', view: 'day', q: '', rid: 0, nid: 0, tid: 0 };
+  const state = { lid: DATA.days[0] ? DATA.days[0].id : null, date: DATA.days[0] ? DATA.days[0].date : null, tab: 'note', view: 'day', q: '', rid: 0, nid: 0, tid: 0, sid: 0 };
   try{
     const qp = new URLSearchParams(location.search);
     if(qp.get('view') === 'map') state.view = 'map';
@@ -574,7 +575,7 @@ const DATA = /*__DATA__*/;
     const it=items[Math.min(state[keyOf], items.length-1)] || items[0];
     const f=fmtDate(it.date);
     const h=el('div','hero');
-    h.innerHTML='<div class="eyebrow"><span>'+f.y+'.'+f.m+'.'+f.day+'</span><span>'+weekday(it.date)+'</span><span class="pill">'+(it.round?'REVIEW · R'+it.round: it.week?'NEWS · '+it.week:'NOTE')+'</span></div>'+
+    h.innerHTML='<div class="eyebrow"><span>'+f.y+'.'+f.m+'.'+f.day+'</span><span>'+weekday(it.date)+'</span><span class="pill">'+(it.type==='supplement'?'SUPPLEMENT':it.round?'REVIEW · R'+it.round: it.week?'NEWS · '+it.week:'NOTE')+'</span></div>'+
       '<h2>'+esc(it.title)+'</h2>'+
       '<div class="tags">'+(it.tags||[]).map(t=>'<span class="tag">#'+esc(t)+'</span>').join('')+'</div>';
     view.appendChild(h);
@@ -584,6 +585,7 @@ const DATA = /*__DATA__*/;
     view.appendChild(body);
   }
   function renderReviews(){ renderList(DATA.reviews||[], '还没有串讲复习', 'rid'); }
+  function renderSupplements(){ renderList(DATA.supplements||[], '还没有补充阅读', 'sid'); }
   function renderNews(){ renderList(DATA.news||[], '还没有动态简报', 'nid'); }
   function renderTopics(){
     const items = DATA.topics||[];
@@ -643,10 +645,11 @@ const DATA = /*__DATA__*/;
     document.querySelectorAll('.nav-item').forEach(n=>{
       n.classList.toggle('active', n.dataset.view===state.view);
     });
-    $('#crumb').textContent = {day:'COURSE',map:'KNOWLEDGE MAP',reviews:'REVIEW',news:'NEWS',topics:'TOPICS'}[state.view] || 'COURSE';
+    $('#crumb').textContent = {day:'COURSE',map:'KNOWLEDGE MAP',reviews:'REVIEW',news:'NEWS',supplements:'EXTRA',topics:'TOPICS'}[state.view] || 'COURSE';
     if(state.view==='map'){ renderMap(); }
     else if(state.view==='reviews'){ renderReviews(); }
     else if(state.view==='news'){ renderNews(); }
+    else if(state.view==='supplements'){ renderSupplements(); }
     else if(state.view==='topics'){ renderTopics(); }
     else { renderDay(); }
     window.scrollTo({top:0,behavior:'instant'});

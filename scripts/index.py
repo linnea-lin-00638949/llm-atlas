@@ -130,6 +130,26 @@ def read_lesson(path: Path) -> dict | None:
     }
 
 
+def read_supplement(path: Path) -> dict | None:
+    meta, body = parse_frontmatter(path.read_text(encoding="utf-8"))
+    if meta.get("type") != "supplement":
+        return None
+    date = str(meta.get("date") or "")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
+        return None
+    return {
+        "type": "supplement",
+        "date": date,
+        "title": str(meta.get("title") or body.splitlines()[0].lstrip("# ").strip()),
+        "domain": str(meta.get("domain") or ""),
+        "tags": meta.get("tags") or [],
+        "markdown": body.strip(),
+        "term_count": len(parse_term_table(body)),
+        "source_count": len(collect_urls(body)),
+        "path": str(path.relative_to(ROOT)),
+    }
+
+
 def read_review(path: Path) -> dict | None:
     meta, body = parse_frontmatter(path.read_text(encoding="utf-8"))
     date = str(meta.get("date") or "")
@@ -405,7 +425,7 @@ def write_terms(config: dict, lessons: list[dict]) -> None:
     (ROOT / "术语库.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def write_home(config: dict, progress: dict, lessons: list[dict], news: list[dict], topics: list[dict] | None = None) -> None:
+def write_home(config: dict, progress: dict, lessons: list[dict], news: list[dict], topics: list[dict] | None = None, supplements: list[dict] | None = None) -> None:
     domain_by_id = {d["id"]: d for d in config["domains"]}
     latest = lessons[-1] if lessons else None
     total_mods = len(config["learning_path"])
@@ -439,6 +459,10 @@ def write_home(config: dict, progress: dict, lessons: list[dict], news: list[dic
     ]
     for l in sorted(lessons, key=lambda x: (x["date"], int(x["lesson_no"]) if x["lesson_no"] else 0))[-6:][::-1]:
         lines.append(f"- [[{Path(l['path']).stem}|{l['date']}]] {l['title']}")
+    if supplements:
+        lines += ["", "## 补充阅读", ""]
+        for sp in sorted(supplements, key=lambda x: x["date"], reverse=True)[:5]:
+            lines.append(f"- [[{Path(sp['path']).stem}|{sp['title']}]]")
     if news:
         lines += ["", "## 最近动态", ""]
         for n in news[-3:][::-1]:
@@ -540,7 +564,7 @@ def write_canvas() -> None:
     p.write_text(json.dumps({"nodes": nodes, "edges": edges}, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def build_dashboard(config: dict, progress: dict, lessons: list[dict], reviews: list[dict], news: list[dict], topics: list[dict] | None = None) -> None:
+def build_dashboard(config: dict, progress: dict, lessons: list[dict], reviews: list[dict], news: list[dict], topics: list[dict] | None = None, supplements: list[dict] | None = None) -> None:
     domain_by_folder = {d["folder"]: d for d in config["domains"]}
     domain_curriculum: dict[str, list] = {d["id"]: [] for d in config["domains"]}
     for m in config["learning_path"]:
@@ -592,6 +616,13 @@ def build_dashboard(config: dict, progress: dict, lessons: list[dict], reviews: 
         ],
         "reviews": [{"date": r["date"], "round": r["round"], "title": r["title"], "tags": r["tags"], "markdown": r["markdown"]} for r in sorted(reviews, key=lambda x: x["date"], reverse=True)],
         "news": [{"week": n["week"], "date": n["date"], "title": n["title"], "tags": n["tags"], "markdown": n["markdown"]} for n in sorted(news, key=lambda x: x["week"], reverse=True)],
+        "supplements": [
+            {
+                "type": "supplement", "date": sp["date"], "title": sp["title"], "domain": sp["domain"],
+                "tags": sp["tags"], "markdown": sp["markdown"], "term_count": sp["term_count"], "source_count": sp["source_count"],
+            }
+            for sp in sorted(supplements or [], key=lambda x: x["date"], reverse=True)
+        ],
         "topics": [
             {
                 "date": t["date"], "title": t["title"], "topic": t["topic"], "topic_id": t["topic_id"],
@@ -608,7 +639,7 @@ def build_dashboard(config: dict, progress: dict, lessons: list[dict], reviews: 
 
 def main() -> None:
     config = load_config()
-    lessons, reviews, news = [], [], []
+    lessons, reviews, news, supplements = [], [], [], []
     if COURSE.exists():
         for folder in sorted(COURSE.iterdir()):
             if not folder.is_dir() or folder.name == "串讲":
@@ -617,6 +648,10 @@ def main() -> None:
                 l = read_lesson(f)
                 if l:
                     lessons.append(l)
+                    continue
+                sup = read_supplement(f)
+                if sup:
+                    supplements.append(sup)
         if REVIEWS.exists():
             for f in sorted(REVIEWS.glob("*.md")):
                 r = read_review(f)
@@ -647,14 +682,14 @@ def main() -> None:
     write_mocs(config, progress, lessons)
     write_course_map(config, progress, lessons)
     write_terms(config, lessons)
-    write_home(config, progress, lessons, news, topics)
+    write_home(config, progress, lessons, news, topics, supplements)
     write_news_index(news)
     write_topic_index(topics, topic_indexes)
     write_canvas()
-    build_dashboard(config, progress, lessons, reviews, news, topics)
+    build_dashboard(config, progress, lessons, reviews, news, topics, supplements)
 
     learned = sum(1 for m in config["learning_path"] if progress["modules"][m["id"]]["status"] == "已学")
-    print(f"indexed {len(lessons)} lessons, {len(reviews)} reviews, {len(news)} news, {len(topics)} topic notes")
+    print(f"indexed {len(lessons)} lessons, {len(reviews)} reviews, {len(news)} news, {len(topics)} topic notes, {len(supplements)} supplements")
     print(f"learned modules: {learned}/{len(config['learning_path'])} | current: {progress['current_module_name']}")
     print(f"dashboard -> {DASH / 'index.html'}")
 

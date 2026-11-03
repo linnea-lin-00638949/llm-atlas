@@ -3,6 +3,12 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+# 从 .secrets/github_token 加载 token（该目录已 gitignore）
+if [ -z "${GH_TOKEN:-}" ] && [ -f .secrets/github_token ]; then
+  export GH_TOKEN="$(cat .secrets/github_token)"
+fi
+export GH_TOKEN
+
 python3 scripts/index.py
 python3 scripts/healthcheck.py
 python3 scripts/build_site.py
