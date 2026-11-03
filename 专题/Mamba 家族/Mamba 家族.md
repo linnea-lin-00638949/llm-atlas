@@ -38,3 +38,8 @@ tags: ["专题", "Mamba", "SSM", "混合架构", "长上下文"]
 
 - `专题/Mamba 家族/lab_ssm.py` —— 跑 `python3 lab_ssm.py`，5 个实验对应第 1–3、5–6 天
 
+
+## 前置补课
+
+- [[课程/基础/补课-RNN与attention的取舍|补课 · RNN 与 attention 的取舍]]：h_t 为什么串行、线性递推的结合律、三维取舍表。
+- 进度与接力：[[专题/Mamba 家族/深挖进度|Mamba 深挖 · 进度与接力]]

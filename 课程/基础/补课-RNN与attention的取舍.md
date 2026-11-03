@@ -95,3 +95,8 @@ RNN 输在「时间步必须排队」，attention 赢在「所有位置同时看
 - Bahdanau et al., *Neural Machine Translation by Jointly Learning to Align and Translate* (2014) — https://arxiv.org/abs/1409.0473
 - Gu & Dao, *Mamba: Linear-Time Sequence Modeling with Selective State Spaces* (2023) — https://arxiv.org/abs/2312.00752
 - 3Blue1Brown, *But what is a neural network?* / *Attention in transformers* 系列 — https://www.youtube.com/@3blue1brown
+
+## 延伸
+
+线性 RNN 如何用结合律变成并行 scan、Mamba 的选择性与 Mamba-2 的 SSD、GDN/KDA 混合架构：
+[[专题/Mamba 家族/Mamba 家族|Mamba 家族与混合架构（专题）]]

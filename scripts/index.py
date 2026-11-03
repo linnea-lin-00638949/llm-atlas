@@ -180,18 +180,21 @@ def read_news(path: Path) -> dict | None:
 
 def read_topic(path: Path) -> dict | None:
     meta, body = parse_frontmatter(path.read_text(encoding="utf-8"))
-    if meta.get("type") != "topic":
+    kind = str(meta.get("type") or "")
+    if kind not in {"topic", "study-plan"}:
         return None
     date = str(meta.get("date") or "")
     urls = collect_urls(body)
+    is_plan = kind == "study-plan"
     return {
         "date": date,
+        "type": kind,
         "title": str(meta.get("title") or body.splitlines()[0].lstrip("# ").strip()),
-        "topic": str(meta.get("topic") or ""),
-        "topic_id": str(meta.get("topic_id") or ""),
-        "part": str(meta.get("part") or ""),
-        "part_title": str(meta.get("part_title") or ""),
-        "order": meta.get("order"),
+        "topic": str(meta.get("topic") or ("Mamba 家族与混合架构" if is_plan else "")),
+        "topic_id": str(meta.get("topic_id") or ("mamba-family" if is_plan else "")),
+        "part": str(meta.get("part") or (path.stem if is_plan else "")),
+        "part_title": str(meta.get("part_title") or ("精读计划" if is_plan else "")),
+        "order": meta.get("order") or (90 if is_plan else None),
         "tags": meta.get("tags") or [],
         "markdown": body.strip(),
         "term_count": len(parse_term_table(body)),
@@ -524,6 +527,9 @@ def write_topic_index(topics: list[dict], indexes: list[dict]) -> None:
         lines += ["| 视角 | 笔记 |", "| --- | --- |"]
         for t in sorted(group, key=lambda x: x["order"] or 0):
             lines.append(f"| {t['part_title']} | [[专题/{t['path'].split('/')[1]}/{t['part']}|{t['title']}]] |")
+        folder = group[0]["path"].split("/")[1]
+        if (ROOT / "专题" / folder / "lab_ssm.py").exists():
+            lines += ["", f"动手实验：[[专题/{folder}/lab_ssm|labs/演示脚本]]"]
         lines.append("")
     if not by_id:
         lines.append("_还没有专题笔记。想开一个专题直接说，例如「帮我整理 Mamba 家族的知识」。_")
