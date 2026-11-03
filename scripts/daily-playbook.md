@@ -91,6 +91,16 @@ cat state/coverage.json | head -20
 - Obsidian 打开后：课程地图状态更新、术语库新增术语、图谱新增节点；
 - 看板 `dashboard/index.html`：新课出现在左侧、术语/来源计数正确。
 
+## 3.5 发布到手机看板
+
+```bash
+bash scripts/publish.sh
+```
+
+重建索引 → 健康检查 → 构建 `_site/` → 提交推送；GitHub Actions 自动部署到
+<https://linnea-lin-00638949.github.io/llm-atlas/>（约 1 分钟）。token 从 `.secrets/github_token` 读取（已 gitignore）。
+没网或没 token 时跳过即可，不影响本地。
+
 ---
 
 ## 4. 异常处理
