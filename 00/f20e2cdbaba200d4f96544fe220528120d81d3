@@ -1,0 +1,18 @@
+dashboard/index.html
+  h_20a4004d732858 353-357,397-402,411,723-724,729-733,736,738,742,744,760,779-803,811,832-833,863
+dashboard/template.html
+  h_20a4004d732858 353-357,397-402,723-724,729-733,736,738,742,744,760,779-803,811,832-833,863
+state/coverage.json
+  h_20a4004d732858 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "00f20e2cdbaba200d4f96544fe220528120d81d3",
+  "prompts": {},
+  "humans": {
+    "h_20a4004d732858": {
+      "author": "linnea-lin-00638949 <linnea-lin-00638949@users.noreply.github.com>"
+    }
+  }
+}
