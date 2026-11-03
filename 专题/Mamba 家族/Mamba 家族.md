@@ -29,3 +29,12 @@ tags: ["专题", "Mamba", "SSM", "混合架构", "长上下文"]
 [[专题/Mamba 家族/model-evolution|模型演进：从 S4 到 Mamba-2，再到 GDN / KDA 等混合模型]]
 [[专题/Mamba 家族/vllm|推理框架：vLLM 怎么处理 Mamba 与混合模型]]
 [[专题/Mamba 家族/ascend|硬件：昇腾 NPU 上跑 Mamba 有什么特殊点]]
+
+## 精读计划
+
+[[专题/Mamba 家族/学习计划|7 天精读计划（每天 60–90 分钟，含手算与实验）]]
+
+## 动手实验
+
+- `专题/Mamba 家族/lab_ssm.py` —— 跑 `python3 lab_ssm.py`，5 个实验对应第 1–3、5–6 天
+

@@ -99,6 +99,8 @@ def collect_urls(text: str) -> set[str]:
 
 def read_lesson(path: Path) -> dict | None:
     meta, body = parse_frontmatter(path.read_text(encoding="utf-8"))
+    if meta.get("type") in {"supplement", "topic", "topic-index"}:
+        return None
     date = str(meta.get("date") or "")
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
         return None

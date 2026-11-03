@@ -154,6 +154,14 @@ Learning/（= Obsidian 库）
 
 ---
 
+## 九、部署到手机随时访问
+
+看板已部署到 **GitHub Pages**：<https://linnea-lin-00638949.github.io/llm-atlas/>（手机浏览器直接打开，可「添加到主屏幕」）。也可用局域网/Cloudflare/Obsidian 手机端访问，完整步骤见 [`deploy/README.md`](deploy/README.md)。
+
+- 临时看：`python3 scripts/serve.py --open`，手机同 Wi-Fi 打开终端打印的地址；
+- 随时看：`bash scripts/publish.sh` 推送到 GitHub Pages / Cloudflare Pages（一次配置）；
+- 读到正文：把库放进 iCloud，手机 Obsidian 打开同一 vault。
+
 ## 八、当前状态
 
 - 课程：**2026-11-03 开课**，第 1 课「神经网络前向传播与梯度下降」
