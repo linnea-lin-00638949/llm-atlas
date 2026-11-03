@@ -1,0 +1,52 @@
+{
+  "kind": "topic",
+  "topic_id": "mamba-family",
+  "folder": "Mamba 家族",
+  "name": "Mamba 家族与混合架构",
+  "date": "2026-11-03",
+  "moc_path": "/Users/lyf02488571/Desktop/Learning/专题/Mamba 家族/Mamba 家族.md",
+  "moc_md": "# Mamba 家族与混合架构（专题）\n\n> 定长状态替掉越写越长的 KV cache：数学、服务与硬件。\n\n## 为什么学\n长上下文的大头开销是 KV cache。Mamba 把它压成 O(1) 状态，混合架构让 attention 只留少数层；昇腾 + vLLM 上已能遇到这类模型。\n\n## 三篇导读\n- 模型演进：S4 离散化 → Mamba 选择性扫描 → Mamba-2 的 SSD → GDN / KDA 与混合架构的分工。\n- 推理框架：vLLM 如何分页管理 conv_state / ssm_state，前缀缓存与投机解码要改什么。\n- 硬件：scan 为何喂不饱达芬奇 Cube，CANN 算子与 vllm-ascend 的适配。\n\n## 建议阅读顺序\n1 → 2 → 3：先记号，再服务，最后硅片。\n\n## 与课程的关系\n第 1 课的前向传播就是 h_t = Ā h_{t−1} + B̄ x_t；第 3 课的 attention 是 SSD 的另一端；KV cache 那课是第 2 篇的对照组；第 7 课的达芬奇架构与 roofline 课决定第 3 篇的结论。",
+  "reading_note": "先只读第 1 篇的「离散化 + 递推」，拿笔手算一个 1 维、N=2 的三步例子，确认真的会了再往下走；版本号、算子名和文中标「存疑」的地方，一律用你机器上的 vLLM / CANN 文档复核，别把提纲当结论背。",
+  "parts": [
+    {
+      "id": "model-evolution",
+      "title": "模型演进：从 S4 到 Mamba-2，再到 GDN / KDA 等混合模型",
+      "order": 1,
+      "file_path": "/Users/lyf02488571/Desktop/Learning/专题/Mamba 家族/model-evolution.md",
+      "tags": [
+        "SSM",
+        "Mamba",
+        "混合架构",
+        "线性注意力",
+        "长上下文"
+      ]
+    },
+    {
+      "id": "vllm",
+      "title": "推理框架：vLLM 怎么处理 Mamba 与混合模型",
+      "order": 2,
+      "file_path": "/Users/lyf02488571/Desktop/Learning/专题/Mamba 家族/vllm.md",
+      "tags": [
+        "Mamba",
+        "vLLM",
+        "混合架构",
+        "推理框架",
+        "昇腾"
+      ]
+    },
+    {
+      "id": "ascend",
+      "title": "硬件：昇腾 NPU 上跑 Mamba 有什么特殊点",
+      "order": 3,
+      "file_path": "/Users/lyf02488571/Desktop/Learning/专题/Mamba 家族/ascend.md",
+      "tags": [
+        "昇腾 NPU",
+        "Mamba",
+        "GDN",
+        "roofline",
+        "vllm-ascend",
+        "混合架构"
+      ]
+    }
+  ]
+}

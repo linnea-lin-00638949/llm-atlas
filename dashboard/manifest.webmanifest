@@ -1,0 +1,16 @@
+{
+  "name": "LLM Atlas · 大模型学习笔记",
+  "short_name": "LLM Atlas",
+  "description": "按课程路径每天一课的大模型学习笔记",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070a11",
+  "theme_color": "#070a11",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

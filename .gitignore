@@ -1,0 +1,5 @@
+.DS_Store
+_site/
+scratch/
+archive/
+.obsidian/workspace*.json

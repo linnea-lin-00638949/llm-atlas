@@ -1,0 +1,28 @@
+{
+	"nodes":[
+		{"id":"home","type":"file","file":"首页.md","x":0,"y":0,"width":300,"height":140},
+		{"id":"map","type":"file","file":"课程地图.md","x":0,"y":-560,"width":320,"height":150},
+		{"id":"terms","type":"file","file":"术语库.md","x":-700,"y":-560,"width":280,"height":130},
+		{"id":"news","type":"file","file":"动态索引.md","x":700,"y":-560,"width":280,"height":130},
+		{"id":"fd","type":"file","file":"knowledge/foundation.md","x":-1080,"y":-240,"width":300,"height":160},
+		{"id":"me","type":"file","file":"knowledge/model-evolution.md","x":-1080,"y":120,"width":300,"height":160},
+		{"id":"if","type":"file","file":"knowledge/inference-frameworks.md","x":1080,"y":-240,"width":300,"height":160},
+		{"id":"hw","type":"file","file":"knowledge/hardware.md","x":1080,"y":120,"width":300,"height":160},
+		{"id":"tr","type":"file","file":"knowledge/training.md","x":360,"y":360,"width":300,"height":160},
+		{"id":"note","type":"text","text":"每天 08:30 自动生成一课\n网页看板：dashboard/index.html\n课程配置：config/agents.json","x":-360,"y":360,"width":320,"height":100}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"home","toNode":"map","fromSide":"top","toSide":"bottom"},
+		{"id":"e2","fromNode":"home","toNode":"fd","fromSide":"left","toSide":"right"},
+		{"id":"e3","fromNode":"home","toNode":"me","fromSide":"left","toSide":"right"},
+		{"id":"e4","fromNode":"home","toNode":"if","fromSide":"right","toSide":"left"},
+		{"id":"e5","fromNode":"home","toNode":"hw","fromSide":"right","toSide":"left"},
+		{"id":"e6","fromNode":"home","toNode":"tr","fromSide":"bottom","toSide":"top"},
+		{"id":"e7","fromNode":"home","toNode":"terms","fromSide":"left","toSide":"right"},
+		{"id":"e8","fromNode":"home","toNode":"news","fromSide":"right","toSide":"left"},
+		{"id":"e9","fromNode":"me","toNode":"fd","fromSide":"bottom","toSide":"top"},
+		{"id":"e10","fromNode":"if","toNode":"hw","fromSide":"bottom","toSide":"top"},
+		{"id":"e11","fromNode":"if","toNode":"tr","fromSide":"right","toSide":"left"},
+		{"id":"e12","fromNode":"hw","toNode":"tr","fromSide":"bottom","toSide":"top"}
+	]
+}

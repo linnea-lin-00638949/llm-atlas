@@ -1,0 +1,380 @@
+{
+  "mode": "course",
+  "updated": "2026-11-03 16:19",
+  "lesson_count": 14,
+  "review_count": 3,
+  "news_count": 0,
+  "current_module": "pretrain-basics",
+  "current_module_name": "预训练基础与 scaling law",
+  "last_lesson_path": "课程/硬件/2026-11-03-ascend-arch.md",
+  "recent_lesson_paths": [
+    "课程/模型演进/2026-11-03-transformer-foundation-2.md",
+    "课程/模型演进/2026-11-03-transformer-foundation.md",
+    "课程/硬件/2026-11-03-ascend-arch-2.md",
+    "课程/硬件/2026-11-03-ascend-arch.md"
+  ],
+  "review_rounds": 3,
+  "modules": {
+    "nn-basics-1": {
+      "status": "已学",
+      "first_date": "2026-11-03",
+      "last_date": "2026-11-03",
+      "lesson_files": [
+        "课程/基础/2026-11-03-nn-basics-1.md"
+      ]
+    },
+    "nn-basics-2": {
+      "status": "已学",
+      "first_date": "2026-11-03",
+      "last_date": "2026-11-03",
+      "lesson_files": [
+        "课程/基础/2026-11-03-nn-basics-2.md"
+      ]
+    },
+    "transformer-foundation": {
+      "status": "已学",
+      "first_date": "2026-11-03",
+      "last_date": "2026-11-03",
+      "lesson_files": [
+        "课程/模型演进/2026-11-03-transformer-foundation-2.md",
+        "课程/模型演进/2026-11-03-transformer-foundation.md"
+      ]
+    },
+    "serving-basics": {
+      "status": "已学",
+      "first_date": "2026-11-03",
+      "last_date": "2026-11-03",
+      "lesson_files": [
+        "课程/推理框架/2026-11-03-serving-basics.md"
+      ]
+    },
+    "vllm-core": {
+      "status": "已学",
+      "first_date": "2026-11-03",
+      "last_date": "2026-11-03",
+      "lesson_files": [
+        "课程/推理框架/2026-11-03-vllm-core.md"
+      ]
+    },
+    "ascend-arch": {
+      "status": "已学",
+      "first_date": "2026-11-03",
+      "last_date": "2026-11-03",
+      "lesson_files": [
+        "课程/硬件/2026-11-03-ascend-arch-2.md",
+        "课程/硬件/2026-11-03-ascend-arch.md"
+      ]
+    },
+    "vllm-ascend": {
+      "status": "已学",
+      "first_date": "2026-11-03",
+      "last_date": "2026-11-03",
+      "lesson_files": [
+        "课程/推理框架/2026-11-03-vllm-ascend-2.md",
+        "课程/推理框架/2026-11-03-vllm-ascend.md"
+      ]
+    },
+    "quant-compile": {
+      "status": "已学",
+      "first_date": "2026-11-03",
+      "last_date": "2026-11-03",
+      "lesson_files": [
+        "课程/推理框架/2026-11-03-quant-compile.md"
+      ]
+    },
+    "spec-decoding": {
+      "status": "已学",
+      "first_date": "2026-11-03",
+      "last_date": "2026-11-03",
+      "lesson_files": [
+        "课程/推理框架/2026-11-03-spec-decoding.md"
+      ]
+    },
+    "pd-disagg": {
+      "status": "已学",
+      "first_date": "2026-11-03",
+      "last_date": "2026-11-03",
+      "lesson_files": [
+        "课程/推理框架/2026-11-03-pd-disagg.md"
+      ]
+    },
+    "serving-econ": {
+      "status": "已学",
+      "first_date": "2026-11-03",
+      "last_date": "2026-11-03",
+      "lesson_files": [
+        "课程/推理框架/2026-11-03-serving-econ.md"
+      ]
+    },
+    "pretrain-basics": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "distributed": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "post-training": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "data": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "moe": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "moe-training": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "eval": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "infra-reliability": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "sglang": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "tensorrt-llm": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "llama-cpp": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "gpu-arch": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "memory-hierarchy": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "interconnect": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "low-precision": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "accelerators": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "power-cooling": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "reasoning": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "long-context": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "multimodal": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "agentic": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "cost-model": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    },
+    "open-ecosystem": {
+      "status": "planned",
+      "first_date": "",
+      "last_date": "",
+      "lesson_files": []
+    }
+  },
+  "domains": {
+    "foundation": {
+      "learned_modules": [
+        "nn-basics-1",
+        "nn-basics-2"
+      ],
+      "first_seen": {
+        "nn-basics-1": "2026-11-03",
+        "nn-basics-2": "2026-11-03"
+      },
+      "tags": [
+        "Adam",
+        "优化器",
+        "前向传播",
+        "反向传播",
+        "学习率",
+        "损失函数",
+        "梯度下降",
+        "深度学习基础",
+        "激活函数",
+        "神经网络",
+        "链式法则"
+      ],
+      "last_date": "2026-11-03"
+    },
+    "model-evolution": {
+      "learned_modules": [
+        "transformer-foundation"
+      ],
+      "first_seen": {
+        "transformer-foundation": "2026-11-03"
+      },
+      "tags": [
+        "GQA",
+        "KV cache",
+        "LLM 架构",
+        "QKV",
+        "RoPE",
+        "attention",
+        "decoder-only",
+        "multi-head attention",
+        "transformer",
+        "模型演进",
+        "残差连接"
+      ],
+      "last_date": "2026-11-03"
+    },
+    "inference-frameworks": {
+      "learned_modules": [
+        "pd-disagg",
+        "quant-compile",
+        "serving-basics",
+        "serving-econ",
+        "spec-decoding",
+        "vllm-ascend",
+        "vllm-core"
+      ],
+      "first_seen": {
+        "pd-disagg": "2026-11-03",
+        "quant-compile": "2026-11-03",
+        "serving-basics": "2026-11-03",
+        "serving-econ": "2026-11-03",
+        "spec-decoding": "2026-11-03",
+        "vllm-ascend": "2026-11-03",
+        "vllm-core": "2026-11-03"
+      },
+      "tags": [
+        "CANN",
+        "EAGLE",
+        "KV cache",
+        "PD 分离",
+        "PTQ/QAT",
+        "PagedAttention",
+        "SLO",
+        "SmoothQuant",
+        "prefix caching",
+        "profiler",
+        "torch-npu",
+        "torch.compile",
+        "vLLM",
+        "vllm-ascend",
+        "图优化",
+        "多租户",
+        "定价",
+        "性能建模",
+        "性能指标",
+        "投机解码",
+        "接受率",
+        "推理加速",
+        "推理性能",
+        "推理成本",
+        "推理服务",
+        "推理框架",
+        "推理调度",
+        "昇腾",
+        "昇腾 NPU",
+        "昇腾推理",
+        "调度",
+        "量化",
+        "长上下文"
+      ],
+      "last_date": "2026-11-03"
+    },
+    "hardware": {
+      "learned_modules": [
+        "ascend-arch"
+      ],
+      "first_seen": {
+        "ascend-arch": "2026-11-03"
+      },
+      "tags": [
+        "AscendCL",
+        "Atlas",
+        "CANN",
+        "HBM",
+        "NPU",
+        "torch-npu",
+        "vLLM",
+        "性能剖析",
+        "昇腾",
+        "昇腾 NPU",
+        "达芬奇架构"
+      ],
+      "last_date": "2026-11-03"
+    },
+    "training": {
+      "learned_modules": [],
+      "first_seen": {},
+      "tags": [],
+      "last_date": ""
+    }
+  }
+}
