@@ -350,6 +350,11 @@
   .qq{font-size:12.5px;color:var(--muted);border-left:2px solid var(--accent);padding-left:8px;margin-bottom:6px}
   .qc{font-size:14px;color:var(--text);margin-bottom:8px}
   .qdel{background:none;border:1px solid var(--line);color:var(--faint);border-radius:6px;font-size:10.5px;padding:2px 8px;cursor:pointer;font-family:var(--sans)}
+
+  .ann-btn{background:transparent;border:1px solid var(--line-strong);color:var(--muted);border-radius:9px;padding:8px 12px;font-size:12px;cursor:pointer;font-family:var(--sans);white-space:nowrap}
+  .ann-btn.on{background:rgba(232,121,166,.16);border-color:rgba(232,121,166,.5);color:#f3a8c6}
+  body.annotate .md p, body.annotate .md li, body.annotate .md h2, body.annotate .md h3, body.annotate .md td{outline:1px dashed rgba(138,164,255,.30);outline-offset:5px;border-radius:4px;cursor:pointer}
+  body.annotate .md p:hover, body.annotate .md li:hover, body.annotate .md h2:hover, body.annotate .md h3:hover, body.annotate .md td:hover{outline-color:rgba(138,164,255,.75);background:rgba(138,164,255,.04)}
 </style>
 </head>
 <body>
@@ -389,9 +394,12 @@
         <button class="menu-btn" id="menu-btn">☰</button>
         <div class="crumb">LLM ATLAS / <b id="crumb">DAILY</b></div>
       </div>
-      <div class="search">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-        <input id="search" placeholder="搜索主题、标签、术语…" autocomplete="off">
+      <div style="display:flex;align-items:center;gap:10px">
+        <button class="ann-btn" id="ann-btn" title="打开批注模式">✎ 批注</button>
+        <div class="search">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="search" placeholder="搜索主题、标签、术语…" autocomplete="off">
+        </div>
       </div>
     </div>
     <div class="wrap" id="view"></div>
@@ -712,22 +720,28 @@ const DATA = /*__DATA__*/;
     selBtn.className='selbtn'; selBtn.type='button'; selBtn.textContent='＋ 标记疑问';
     selBtn.addEventListener('mousedown',e=>e.preventDefault());
     selBtn.addEventListener('touchstart',e=>e.preventDefault());
-    selBtn.addEventListener('click',()=>{ openQModal(selQuote); });
+    selBtn.addEventListener('click',e=>{ e.preventDefault(); e.stopPropagation(); openQModal(selQuote); });
+    selBtn.addEventListener('touchend',e=>{ e.preventDefault(); e.stopPropagation(); openQModal(selQuote); },{passive:false});
     document.body.appendChild(selBtn);
     return selBtn;
   }
   function hideSelBtn(){ if(selBtn) selBtn.style.display='none'; }
+  let hideTimer=null;
+  function scheduleHide(){
+    clearTimeout(hideTimer);
+    hideTimer=setTimeout(()=>{ const t=(document.getSelection()||{toString:()=>''}).toString().trim(); if(!t) hideSelBtn(); }, 800);
+  }
   function onSelection(){
     const sel=document.getSelection();
-    if(!sel || sel.rangeCount===0){ hideSelBtn(); return; }
+    if(!sel || sel.rangeCount===0){ scheduleHide(); return; }
     const text=sel.toString().trim();
-    if(text.length<6){ hideSelBtn(); return; }
+    if(text.length<6){ scheduleHide(); return; }
     const range=sel.getRangeAt(0);
     const node=range.commonAncestorContainer;
     const elem=node.nodeType===1?node:node.parentElement;
-    if(!elem || !elem.closest('.md')){ hideSelBtn(); return; }
+    if(!elem || !elem.closest('.md')){ scheduleHide(); return; }
     const rect=range.getBoundingClientRect();
-    if(!rect || (!rect.width && !rect.height)){ hideSelBtn(); return; }
+    if(!rect || (!rect.width && !rect.height)){ scheduleHide(); return; }
     const b=ensureSelBtn();
     b.style.display='block';
     b.style.left=Math.max(8, Math.min(window.innerWidth-150, rect.left+rect.width/2-65))+'px';
@@ -743,7 +757,7 @@ const DATA = /*__DATA__*/;
     const day=currentLesson();
     const overlay=el('div','qmodal');
     overlay.innerHTML='<div class="qbox"><h3>标记疑问</h3>'+
-      '<div class="qquote">'+esc(quote.slice(0,240))+'</div>'+
+      (quote? '<div class="qquote">'+esc(quote.slice(0,240))+'</div>':'')+
       '<textarea class="qta" placeholder="你在想什么？例如：为什么 Ā 要这样离散化？"></textarea>'+
       '<div class="qactions"><button class="qbtn ghost" data-a="cancel">取消</button><button class="qbtn primary" data-a="save">保存疑问</button></div>'+
       '<p class="qhint">保存在本机浏览器。之后在「我的疑问」里复制 / 下载，交给 Agent 讲解。</p></div>';
@@ -762,6 +776,31 @@ const DATA = /*__DATA__*/;
     };
   }
 
+
+  /* ---------- 批注模式（iPhone 更稳） ---------- */
+  let annotate=false;
+  function setAnnotate(on){
+    annotate=on;
+    document.body.classList.toggle('annotate',on);
+    const b=$('#ann-btn');
+    if(b){ b.classList.toggle('on',on); b.textContent=on?'✎ 批注中':'✎ 批注'; }
+    if(on) toast('批注模式：点任意段落即可标记疑问');
+  }
+  function initAnnotate(){
+    const b=$('#ann-btn');
+    if(b) b.onclick=()=>setAnnotate(!annotate);
+    document.addEventListener('click',e=>{
+      if(!annotate) return;
+      if(e.target.closest('.topbar,.sidebar,.qmodal,.selbtn')) return;
+      if(e.target.closest('a')) return;
+      const block=e.target.closest('.md p, .md li, .md h2, .md h3, .md td');
+      if(!block) return;
+      const quote=(block.innerText||'').trim().slice(0,400);
+      if(!quote) return;
+      e.preventDefault(); e.stopPropagation();
+      openQModal(quote);
+    }, true);
+  }
   function qMarkdown(qs){
     const groups={};
     qs.forEach(q=>{ const g=groups[q.lessonId]||(groups[q.lessonId]={title:q.lessonTitle,items:[]}); g.items.push(q); });
@@ -769,7 +808,7 @@ const DATA = /*__DATA__*/;
     Object.values(groups).forEach(g=>{
       md+='## '+g.title+'\n\n';
       g.items.forEach(q=>{
-        md+='- 引用：「'+(q.quote||'').replace(/\n/g,' ')+'」\n';
+        if(q.quote && q.quote.trim()) md+='- 引用：「'+q.quote.replace(/\n/g,' ')+'」\n';
         md+='  - 我的问题：'+q.comment+'\n';
       });
       md+='\n';
@@ -790,7 +829,8 @@ const DATA = /*__DATA__*/;
       view.appendChild(e); return;
     }
     const bar=el('div','qbar');
-    bar.innerHTML='<button class="qbtn primary" data-a="copy">复制全部（Markdown）</button><button class="qbtn ghost" data-a="download">下载 .md</button><button class="qbtn ghost" data-a="share">分享</button>';
+    bar.innerHTML='<button class="qbtn primary" data-a="add">＋ 手写一条</button><button class="qbtn ghost" data-a="copy">复制全部</button><button class="qbtn ghost" data-a="download">下载 .md</button><button class="qbtn ghost" data-a="share">分享</button>';
+    bar.querySelector('[data-a="add"]').onclick=()=>openQModal('');
     view.appendChild(bar);
     const md=qMarkdown(qs);
     bar.querySelector('[data-a="copy"]').onclick=()=>{
@@ -820,6 +860,7 @@ const DATA = /*__DATA__*/;
     });
   }
 
+  initAnnotate();
   render();
 })();
 </script>
