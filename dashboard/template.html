@@ -329,6 +329,27 @@
     .md{font-size:14.5px}
     .md table{display:block;overflow-x:auto;white-space:nowrap}
   }
+
+  /* ---------- 划词提问 ---------- */
+  .selbtn{position:fixed;display:none;z-index:80;background:var(--accent);color:#0b0f1a;border:none;border-radius:999px;padding:9px 15px;font-size:12.5px;font-weight:650;box-shadow:0 6px 24px rgba(0,0,0,.45);cursor:pointer;font-family:var(--sans)}
+  .qbadge{background:rgba(232,121,166,.18);color:#f3a8c6;border:1px solid rgba(232,121,166,.35);border-radius:999px;font-size:10px;padding:1px 6px;margin-left:auto;font-family:var(--mono)}
+  .qmodal{position:fixed;inset:0;background:rgba(4,7,13,.72);backdrop-filter:blur(6px);z-index:90;display:flex;align-items:flex-end;justify-content:center;padding:20px}
+  .qbox{width:100%;max-width:560px;background:#0f1626;border:1px solid var(--line-strong);border-radius:18px;padding:20px;box-shadow:0 24px 80px rgba(0,0,0,.6)}
+  .qbox h3{margin:0 0 10px;font-size:15px}
+  .qquote{font-size:12.5px;color:var(--muted);border-left:2px solid var(--accent);padding:6px 10px;background:rgba(138,164,255,.06);border-radius:0 8px 8px 0;margin-bottom:12px;max-height:120px;overflow:auto}
+  .qta{width:100%;min-height:100px;background:#0a101c;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:10px;font-family:var(--sans);font-size:14px;outline:none;resize:vertical;box-sizing:border-box}
+  .qta:focus{border-color:rgba(138,164,255,.45)}
+  .qactions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+  .qbtn{border-radius:9px;padding:8px 14px;font-size:12.5px;cursor:pointer;border:1px solid var(--line-strong);background:transparent;color:var(--text);font-family:var(--sans)}
+  .qbtn.primary{background:var(--accent);border-color:var(--accent);color:#0b0f1a;font-weight:650}
+  .qbtn.ghost:hover{background:rgba(255,255,255,.05)}
+  .qhint{font-size:10.5px;color:var(--faint);margin:10px 0 0;line-height:1.6}
+  .qbar{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 8px}
+  .qitem{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0;background:rgba(255,255,255,.02)}
+  .qmeta{font-size:10.5px;color:var(--faint);font-family:var(--mono);margin-bottom:6px}
+  .qq{font-size:12.5px;color:var(--muted);border-left:2px solid var(--accent);padding-left:8px;margin-bottom:6px}
+  .qc{font-size:14px;color:var(--text);margin-bottom:8px}
+  .qdel{background:none;border:1px solid var(--line);color:var(--faint);border-radius:6px;font-size:10.5px;padding:2px 8px;cursor:pointer;font-family:var(--sans)}
 </style>
 </head>
 <body>
@@ -347,6 +368,7 @@
       <div class="nav-item" data-view="reviews"><span class="dot" style="background:var(--warn);box-shadow:0 0 8px var(--warn)"></span>串讲复习</div>
       <div class="nav-item" data-view="news"><span class="dot" style="background:var(--accent-2);box-shadow:0 0 8px var(--accent-2)"></span>动态简报</div>
       <div class="nav-item" data-view="supplements"><span class="dot" style="background:#f2a65a;box-shadow:0 0 8px #f2a65a"></span>补充阅读</div>
+      <div class="nav-item" data-view="questions"><span class="dot" style="background:#e879a6;box-shadow:0 0 8px #e879a6"></span>我的疑问<span class="qbadge" id="q-badge">0</span></div>
       <div class="nav-item" data-view="topics"><span class="dot" style="background:#b8a5ff;box-shadow:0 0 8px #b8a5ff"></span>专题</div>
       <div class="nav-item" data-view="map"><span class="dot" style="background:#e879a6;box-shadow:0 0 8px #e879a6"></span>知识地图</div>
     </div>
@@ -648,12 +670,14 @@ const DATA = /*__DATA__*/;
     document.querySelectorAll('.nav-item').forEach(n=>{
       n.classList.toggle('active', n.dataset.view===state.view);
     });
-    $('#crumb').textContent = {day:'COURSE',map:'KNOWLEDGE MAP',reviews:'REVIEW',news:'NEWS',supplements:'EXTRA',topics:'TOPICS'}[state.view] || 'COURSE';
+    $('#crumb').textContent = {day:'COURSE',map:'KNOWLEDGE MAP',reviews:'REVIEW',news:'NEWS',supplements:'EXTRA',topics:'TOPICS',questions:'MY QUESTIONS'}[state.view] || 'COURSE';
+    updateQBadge();
     if(state.view==='map'){ renderMap(); }
     else if(state.view==='reviews'){ renderReviews(); }
     else if(state.view==='news'){ renderNews(); }
     else if(state.view==='supplements'){ renderSupplements(); }
     else if(state.view==='topics'){ renderTopics(); }
+    else if(state.view==='questions'){ renderQuestions(); }
     else { renderDay(); }
     window.scrollTo({top:0,behavior:'instant'});
   }
@@ -673,6 +697,128 @@ const DATA = /*__DATA__*/;
     }
     if(e.key==='Escape') closeSidebar();
   });
+
+
+  /* ---------- 划词提问 ---------- */
+  const QKEY='atlas.questions.v1';
+  function loadQs(){ try{ return JSON.parse(localStorage.getItem(QKEY)||'[]'); }catch(e){ return []; } }
+  function saveQs(a){ try{ localStorage.setItem(QKEY, JSON.stringify(a)); }catch(e){} }
+  function updateQBadge(){ const b=$('#q-badge'); if(b) b.textContent=loadQs().length; }
+
+  let selBtn=null, selQuote='';
+  function ensureSelBtn(){
+    if(selBtn) return selBtn;
+    selBtn=document.createElement('button');
+    selBtn.className='selbtn'; selBtn.type='button'; selBtn.textContent='＋ 标记疑问';
+    selBtn.addEventListener('mousedown',e=>e.preventDefault());
+    selBtn.addEventListener('touchstart',e=>e.preventDefault());
+    selBtn.addEventListener('click',()=>{ openQModal(selQuote); });
+    document.body.appendChild(selBtn);
+    return selBtn;
+  }
+  function hideSelBtn(){ if(selBtn) selBtn.style.display='none'; }
+  function onSelection(){
+    const sel=document.getSelection();
+    if(!sel || sel.rangeCount===0){ hideSelBtn(); return; }
+    const text=sel.toString().trim();
+    if(text.length<6){ hideSelBtn(); return; }
+    const range=sel.getRangeAt(0);
+    const node=range.commonAncestorContainer;
+    const elem=node.nodeType===1?node:node.parentElement;
+    if(!elem || !elem.closest('.md')){ hideSelBtn(); return; }
+    const rect=range.getBoundingClientRect();
+    if(!rect || (!rect.width && !rect.height)){ hideSelBtn(); return; }
+    const b=ensureSelBtn();
+    b.style.display='block';
+    b.style.left=Math.max(8, Math.min(window.innerWidth-150, rect.left+rect.width/2-65))+'px';
+    b.style.top=Math.min(window.innerHeight-64, rect.bottom+8)+'px';
+    selQuote=text.slice(0,400);
+  }
+  document.addEventListener('selectionchange',()=>{ setTimeout(onSelection,60); });
+
+  function currentLesson(){
+    return DATA.days.find(d=>d.id===state.lid) || DATA.days[0] || {id:'', title:''};
+  }
+  function openQModal(quote){
+    const day=currentLesson();
+    const overlay=el('div','qmodal');
+    overlay.innerHTML='<div class="qbox"><h3>标记疑问</h3>'+
+      '<div class="qquote">'+esc(quote.slice(0,240))+'</div>'+
+      '<textarea class="qta" placeholder="你在想什么？例如：为什么 Ā 要这样离散化？"></textarea>'+
+      '<div class="qactions"><button class="qbtn ghost" data-a="cancel">取消</button><button class="qbtn primary" data-a="save">保存疑问</button></div>'+
+      '<p class="qhint">保存在本机浏览器。之后在「我的疑问」里复制 / 下载，交给 Agent 讲解。</p></div>';
+    document.body.appendChild(overlay);
+    const ta=overlay.querySelector('.qta'); ta.focus();
+    overlay.addEventListener('click',e=>{ if(e.target===overlay) overlay.remove(); });
+    overlay.querySelector('[data-a="cancel"]').onclick=()=>overlay.remove();
+    overlay.querySelector('[data-a="save"]').onclick=()=>{
+      const comment=ta.value.trim();
+      if(!comment){ ta.focus(); return; }
+      const qs=loadQs();
+      qs.unshift({id:'q'+Date.now(), lessonId:day.id, lessonTitle:day.title, quote:quote, comment:comment, ts:new Date().toISOString()});
+      saveQs(qs); overlay.remove(); hideSelBtn(); updateQBadge();
+      toast('已保存，去「我的疑问」查看');
+      if(state.view==='questions') render();
+    };
+  }
+
+  function qMarkdown(qs){
+    const groups={};
+    qs.forEach(q=>{ const g=groups[q.lessonId]||(groups[q.lessonId]={title:q.lessonTitle,items:[]}); g.items.push(q); });
+    let md='# 学习疑问 · '+new Date().toISOString().slice(0,10)+'\n\n';
+    Object.values(groups).forEach(g=>{
+      md+='## '+g.title+'\n\n';
+      g.items.forEach(q=>{
+        md+='- 引用：「'+(q.quote||'').replace(/\n/g,' ')+'」\n';
+        md+='  - 我的问题：'+q.comment+'\n';
+      });
+      md+='\n';
+    });
+    md+='\n> 请 Agent 针对每条问题讲解，并指出我理解偏差在哪。\n';
+    return md;
+  }
+  function renderQuestions(){
+    const view=$('#view'); view.innerHTML='';
+    const qs=loadQs();
+    const h=el('div','hero');
+    h.innerHTML='<div class="eyebrow"><span>MY QUESTIONS</span><span class="pill">'+qs.length+' 条</span></div>'+
+      '<h2>我的疑问</h2>'+
+      '<p class="thread">在文章里长按选中一段文字 → 点「＋ 标记疑问」→ 写下你的问题。问题存在这台设备，之后复制或下载交给 Agent 讲解。</p>';
+    view.appendChild(h);
+    if(!qs.length){
+      const e=el('div','empty'); e.innerHTML='<b>还没有疑问</b>打开任意一课，选中一段文字，点「＋ 标记疑问」。';
+      view.appendChild(e); return;
+    }
+    const bar=el('div','qbar');
+    bar.innerHTML='<button class="qbtn primary" data-a="copy">复制全部（Markdown）</button><button class="qbtn ghost" data-a="download">下载 .md</button><button class="qbtn ghost" data-a="share">分享</button>';
+    view.appendChild(bar);
+    const md=qMarkdown(qs);
+    bar.querySelector('[data-a="copy"]').onclick=()=>{
+      if(navigator.clipboard) navigator.clipboard.writeText(md).then(()=>toast('已复制，粘贴给 Agent 即可')).catch(()=>toast('复制失败，请用下载'));
+      else toast('当前浏览器不支持复制，请用下载');
+    };
+    bar.querySelector('[data-a="download"]').onclick=()=>{
+      const blob=new Blob([md],{type:'text/markdown'});
+      const a=document.createElement('a');
+      a.href=URL.createObjectURL(blob);
+      a.download='疑问-'+new Date().toISOString().slice(0,10)+'.md';
+      document.body.appendChild(a); a.click(); a.remove();
+      toast('已下载到「文件」App');
+    };
+    bar.querySelector('[data-a="share"]').onclick=()=>{
+      if(navigator.share){ navigator.share({title:'学习疑问', text:md}); }
+      else { toast('当前浏览器不支持分享，请用下载'); }
+    };
+    qs.forEach(q=>{
+      const it=el('div','qitem');
+      it.innerHTML='<div class="qmeta">'+esc(q.lessonTitle)+' · '+new Date(q.ts).toLocaleString()+'</div>'+
+        '<div class="qq">「'+esc((q.quote||'').slice(0,160))+'」</div>'+
+        '<div class="qc">'+esc(q.comment)+'</div>'+
+        '<button class="qdel">删除</button>';
+      it.querySelector('.qdel').onclick=()=>{ saveQs(loadQs().filter(x=>x.id!==q.id)); render(); toast('已删除'); };
+      view.appendChild(it);
+    });
+  }
 
   render();
 })();

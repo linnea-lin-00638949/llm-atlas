@@ -154,6 +154,11 @@ Learning/（= Obsidian 库）
 
 ---
 
+## 八点五、手机划词提问
+
+看板支持在手机上**选中文章内容 → 「＋ 标记疑问」→ 写下问题**，存在本机浏览器；在「我的疑问」里可复制 / 下载 / 分享。
+把导出的 `.md` 放进 [`疑问/`](疑问/README.md)，然后对我说「看我的疑问」，我会逐条讲解并指出理解偏差。
+
 ## 九、部署到手机随时访问
 
 看板已部署到 **GitHub Pages**：<https://linnea-lin-00638949.github.io/llm-atlas/>（手机浏览器直接打开，可「添加到主屏幕」）。也可用局域网/Cloudflare/Obsidian 手机端访问，完整步骤见 [`deploy/README.md`](deploy/README.md)。
