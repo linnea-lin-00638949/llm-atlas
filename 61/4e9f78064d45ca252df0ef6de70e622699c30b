@@ -1,0 +1,24 @@
+README.md
+  h_20a4004d732858 157-161
+dashboard/index.html
+  h_20a4004d732858 332-352,371,403,673-674,680,701-822
+dashboard/template.html
+  h_20a4004d732858 332-352,371,673-674,680,701-822
+scripts/collect_questions.py
+  h_20a4004d732858 1-24
+state/coverage.json
+  h_20a4004d732858 3
+疑问/README.md
+  h_20a4004d732858 1-16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "614e9f78064d45ca252df0ef6de70e622699c30b",
+  "prompts": {},
+  "humans": {
+    "h_20a4004d732858": {
+      "author": "linnea-lin-00638949 <linnea-lin-00638949@users.noreply.github.com>"
+    }
+  }
+}
