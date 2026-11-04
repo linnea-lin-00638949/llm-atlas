@@ -1,0 +1,40 @@
+.obsidian/community-plugins.json
+  h_20a4004d732858 1-3
+.obsidian/plugins/obsidian-excalidraw-plugin/main.js
+  h_20a4004d732858 1-35
+.obsidian/plugins/obsidian-excalidraw-plugin/manifest.json
+  h_20a4004d732858 1-12
+.obsidian/plugins/obsidian-excalidraw-plugin/styles.css
+  h_20a4004d732858 1
+dashboard/index.html
+  h_20a4004d732858 411
+knowledge/training.md
+  h_20a4004d732858 10,16,26-28
+runs/2026-11-04/plan.json
+  h_20a4004d732858 1-28
+runs/2026-11-04/review.md
+  h_20a4004d732858 1-67
+state/coverage.json
+  h_20a4004d732858 3-4,9,13-14,110-115,376-390
+"专题/Mamba 家族/Mamba 逻辑思维导图.excalidraw.md"
+  h_20a4004d732858 1-1613
+术语库.md
+  h_20a4004d732858 3,179-197
+课程/训练/2026-11-04-pretrain-basics.md
+  h_20a4004d732858 1-193
+课程地图.md
+  h_20a4004d732858 5,22
+首页.md
+  h_20a4004d732858 12,22,26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "a04c045805579f7359a988aeca0fc3a47ad70796",
+  "prompts": {},
+  "humans": {
+    "h_20a4004d732858": {
+      "author": "linnea-lin-00638949 <linnea-lin-00638949@users.noreply.github.com>"
+    }
+  }
+}
