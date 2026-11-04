@@ -1,17 +1,17 @@
 {
   "mode": "course",
-  "updated": "2026-11-03 18:00",
-  "lesson_count": 14,
+  "updated": "2026-11-04 08:48",
+  "lesson_count": 15,
   "review_count": 3,
   "news_count": 0,
   "current_module": "pretrain-basics",
   "current_module_name": "预训练基础与 scaling law",
-  "last_lesson_path": "课程/硬件/2026-11-03-ascend-arch.md",
+  "last_lesson_path": "课程/训练/2026-11-04-pretrain-basics.md",
   "recent_lesson_paths": [
-    "课程/模型演进/2026-11-03-transformer-foundation-2.md",
     "课程/模型演进/2026-11-03-transformer-foundation.md",
     "课程/硬件/2026-11-03-ascend-arch-2.md",
-    "课程/硬件/2026-11-03-ascend-arch.md"
+    "课程/硬件/2026-11-03-ascend-arch.md",
+    "课程/训练/2026-11-04-pretrain-basics.md"
   ],
   "review_rounds": 3,
   "modules": {
@@ -107,10 +107,12 @@
       ]
     },
     "pretrain-basics": {
-      "status": "planned",
-      "first_date": "",
-      "last_date": "",
-      "lesson_files": []
+      "status": "进行中",
+      "first_date": "2026-11-04",
+      "last_date": "2026-11-04",
+      "lesson_files": [
+        "课程/训练/2026-11-04-pretrain-basics.md"
+      ]
     },
     "distributed": {
       "status": "planned",
@@ -371,10 +373,21 @@
       "last_date": "2026-11-03"
     },
     "training": {
-      "learned_modules": [],
-      "first_seen": {},
-      "tags": [],
-      "last_date": ""
+      "learned_modules": [
+        "pretrain-basics"
+      ],
+      "first_seen": {
+        "pretrain-basics": "2026-11-04"
+      },
+      "tags": [
+        "Chinchilla",
+        "scaling-law",
+        "交叉熵",
+        "困惑度",
+        "训练稳定性",
+        "预训练"
+      ],
+      "last_date": "2026-11-04"
     }
   }
 }

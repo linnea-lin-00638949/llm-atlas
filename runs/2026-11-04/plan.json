@@ -1,0 +1,28 @@
+{
+  "module_id": "pretrain-basics",
+  "module_name": "预训练基础与 scaling law",
+  "domain_id": "training",
+  "folder": "训练",
+  "day_title": "第 15 课 · 预训练在学什么：从下一个 token 到 scaling law",
+  "goals": [
+    "学完今天，你能写出语言模型的训练目标（下一个 token 的交叉熵），并说清 loss 数值在直觉上意味着什么",
+    "学完今天，你能用 scaling law 解释「给定算力，模型该多大、数据该多少」，并独立算出 Chinchilla 式的 20 token/参数配比",
+    "学完今天，你能读懂一条 loss 曲线，区分正常收敛、学习率过大导致的尖刺/发散、以及数据或实现 bug 造成的异常"
+  ],
+  "pre_test": [
+    "交叉熵 loss 为 2.0（nats）时，模型对正确 token 的平均预测概率约多少？loss 为 0 意味着什么？",
+    "一个 7B 模型按 Chinchilla 配比，训练大约需要多少 token？这些 token 在 HBM 里存得下吗，训练时显存主要花在哪？",
+    "训练 loss 一直平稳下降但验证 loss 开始上升，通常说明发生了什么？"
+  ],
+  "focus": [
+    "语言模型的训练目标：逐位置做下一个 token 预测，交叉熵 = 平均负对数似然；teacher forcing 与移位标签（labels 右移一位）的具体实现，以及 loss 与困惑度（perplexity = e^loss）的换算直觉",
+    "scaling law 在预测什么：幂律形式 L(N, D) = E + A/N^α + B/D^β，可约性（reducible loss）与不可约的熵底；Chinchilla 的「参数量与数据量等比例放大」结论、20 token/参数 的来由，以及相对 GPT-3 时代「参数堆太多、数据给太少」的修正",
+    "数据配比与数据质量：代码/数学/多语/网页的比例如何影响能力，重复训练（epoch > 1）的边际收益衰减，以及「高质量小数据 + 更多 epoch」与「海量低质大数据」的取舍",
+    "训练稳定性：学习率 warmup + cosine 衰减、梯度裁剪、bf16 而非 fp16（避免 loss scale 麻烦）、z-loss 与 qk-layernorm 抑制 logit 爆炸；loss spike 的典型成因与恢复手段",
+    "loss 曲线的读法：train/val 同步下降、val 翘尾（过拟合或分布偏移）、早期尖刺后自愈、loss 卡在某个台阶（数据或 mask 实现 bug）、以及为什么 prefill 阶段看到的 7B 模型能力上限就写在这条曲线上"
+  ],
+  "connect_prev": "上一课把推理成本压到「有效吞吐 ÷ 利用率」，而吞吐天花板的物理来源正是本课要讲的「每个 token 在训练时吃多少算力、模型多大就有多贵」——推理的经济性从预训练那一刻就已经被定死了。",
+  "status": "进行中",
+  "lesson_no": 15,
+  "next_up": "分布式并行：DP/TP/PP/ZeRO"
+}
