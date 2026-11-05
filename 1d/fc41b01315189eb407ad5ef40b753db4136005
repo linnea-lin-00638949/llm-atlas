@@ -1,0 +1,30 @@
+dashboard/index.html
+  h_20a4004d732858 411
+knowledge/training.md
+  h_20a4004d732858 10,16,29
+runs/2026-11-05/plan.json
+  h_20a4004d732858 1-28
+runs/2026-11-05/review.md
+  h_20a4004d732858 1-67
+state/coverage.json
+  h_20a4004d732858 3-4,7-9,13-14,110,112,114-115,385-386,390-391,395
+术语库.md
+  h_20a4004d732858 3,197-206
+课程/训练/2026-11-05-pretrain-basics.md
+  h_20a4004d732858 1-199
+课程地图.md
+  h_20a4004d732858 3,5,22
+首页.md
+  h_20a4004d732858 12,22,26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "1dfc41b01315189eb407ad5ef40b753db4136005",
+  "prompts": {},
+  "humans": {
+    "h_20a4004d732858": {
+      "author": "linnea-lin-00638949 <linnea-lin-00638949@users.noreply.github.com>"
+    }
+  }
+}
