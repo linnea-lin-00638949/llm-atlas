@@ -1,0 +1,24 @@
+dashboard/index.html
+  h_20a4004d732858 411
+runs/2026-11-06/review.md
+  h_20a4004d732858 1-48
+state/coverage.json
+  h_20a4004d732858 3,5,16
+课程/串讲/2026-11-06-第4轮串讲.md
+  h_20a4004d732858 1-107
+课程地图.md
+  h_20a4004d732858 5
+首页.md
+  h_20a4004d732858 22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "fcdf4e1bb32dc41581ef54994799d304fe51d329",
+  "prompts": {},
+  "humans": {
+    "h_20a4004d732858": {
+      "author": "linnea-lin-00638949 <linnea-lin-00638949@users.noreply.github.com>"
+    }
+  }
+}
