@@ -1,8 +1,8 @@
 {
   "mode": "course",
-  "updated": "2026-11-05 09:38",
+  "updated": "2026-11-06 09:36",
   "lesson_count": 16,
-  "review_count": 3,
+  "review_count": 4,
   "news_count": 0,
   "current_module": "distributed",
   "current_module_name": "分布式并行：DP/TP/PP/ZeRO",
@@ -13,7 +13,7 @@
     "课程/训练/2026-11-04-pretrain-basics.md",
     "课程/训练/2026-11-05-pretrain-basics.md"
   ],
-  "review_rounds": 3,
+  "review_rounds": 4,
   "modules": {
     "nn-basics-1": {
       "status": "已学",
