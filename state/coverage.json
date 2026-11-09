@@ -1,17 +1,17 @@
 {
   "mode": "course",
-  "updated": "2026-11-06 09:36",
-  "lesson_count": 16,
+  "updated": "2026-11-09 09:56",
+  "lesson_count": 17,
   "review_count": 4,
   "news_count": 0,
   "current_module": "distributed",
   "current_module_name": "分布式并行：DP/TP/PP/ZeRO",
-  "last_lesson_path": "课程/训练/2026-11-05-pretrain-basics.md",
+  "last_lesson_path": "课程/训练/2026-11-09-distributed.md",
   "recent_lesson_paths": [
-    "课程/硬件/2026-11-03-ascend-arch-2.md",
     "课程/硬件/2026-11-03-ascend-arch.md",
     "课程/训练/2026-11-04-pretrain-basics.md",
-    "课程/训练/2026-11-05-pretrain-basics.md"
+    "课程/训练/2026-11-05-pretrain-basics.md",
+    "课程/训练/2026-11-09-distributed.md"
   ],
   "review_rounds": 4,
   "modules": {
@@ -116,10 +116,12 @@
       ]
     },
     "distributed": {
-      "status": "planned",
-      "first_date": "",
-      "last_date": "",
-      "lesson_files": []
+      "status": "进行中",
+      "first_date": "2026-11-09",
+      "last_date": "2026-11-09",
+      "lesson_files": [
+        "课程/训练/2026-11-09-distributed.md"
+      ]
     },
     "post-training": {
       "status": "planned",
@@ -375,24 +377,31 @@
     },
     "training": {
       "learned_modules": [
-        "pretrain-basics"
+        "pretrain-basics",
+        "distributed"
       ],
       "first_seen": {
-        "pretrain-basics": "2026-11-04"
+        "pretrain-basics": "2026-11-04",
+        "distributed": "2026-11-09"
       },
       "tags": [
         "Chinchilla",
+        "DP/TP/PP",
+        "FSDP",
         "ZeRO",
         "loss曲线判读",
         "scaling-law",
         "交叉熵",
+        "分布式训练",
         "困惑度",
         "数据配比",
+        "显存与通信账",
         "显存估算",
         "训练稳定性",
+        "集合通信",
         "预训练"
       ],
-      "last_date": "2026-11-05"
+      "last_date": "2026-11-09"
     }
   }
 }

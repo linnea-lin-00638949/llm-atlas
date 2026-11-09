@@ -37,11 +37,11 @@ Mamba 换掉了前提：历史被压成一个定长状态，每读一个 token �
 
 **三家模型的账放同一张表**（避免配置打架）：
 
-| 模型（config） | 结构 | KV/token | 32K KV | 状态/序列 |
-| --- | --- | --- | --- | --- |
-| Llama-3-8B | 32 层全 attention，8 KV 头，128 维，fp16 | 128 KiB | 4 GiB | 0 |
-| Jamba-v0.1 | 32 层，4 层 attention（1:7），8 KV 头，128 维；28 层 Mamba-1，d_state 16、d_inner 8192 | 16 KiB | 512 MiB | 约 8.3 MiB |
-| Mamba-Codestral-7B | 64 层纯 Mamba-2，128 头，head_dim 64，d_state 128，bf16 | 0 | 0 | 约 128 MiB |
+| 模型（config）         | 结构                                                                        | KV/token | 32K KV  | 状态/序列     |
+| ------------------ | ------------------------------------------------------------------------- | -------- | ------- | --------- |
+| Llama-3-8B         | 32 层全 attention，8 KV 头，128 维，fp16                                         | 128 KiB  | 4 GiB   | 0         |
+| Jamba-v0.1         | 32 层，4 层 attention（1:7），8 KV 头，128 维；28 层 Mamba-1，d_state 16、d_inner 8192 | 16 KiB   | 512 MiB | 约 8.3 MiB |
+| Mamba-Codestral-7B | 64 层纯 Mamba-2，128 头，head_dim 64，d_state 128，bf16                          | 0        | 0       | 约 128 MiB |
 
 按公开 config 手算（fp16/bf16 每元素 2 字节），未计分页对齐与 padding，实际略高。Jamba 的 512 MiB 是 4 GiB 的 1/8，因为 attention 只占 4/32 层——「省 8 倍」是层比的倒数，不是 Mamba 的魔法。状态与 KV 的交叉点在 8.3 MiB ÷ 16 KiB ≈ 530 token：更短的上下文，状态反而更贵。
 
