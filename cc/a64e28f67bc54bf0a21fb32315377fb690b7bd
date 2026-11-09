@@ -1,0 +1,32 @@
+dashboard/index.html
+  h_20a4004d732858 411
+knowledge/training.md
+  h_20a4004d732858 10,17,30
+runs/2026-11-09/plan.json
+  h_20a4004d732858 1-28
+runs/2026-11-09/review.md
+  h_20a4004d732858 1-15
+state/coverage.json
+  h_20a4004d732858 3-4,9,13-14,119-124,380-381,384-385,389-390,395,398,401,404
+"专题/Mamba 家族/vllm.md"
+  h_20a4004d732858 40-44
+术语库.md
+  h_20a4004d732858 3,207-218
+课程/训练/2026-11-09-distributed.md
+  h_20a4004d732858 1-203
+课程地图.md
+  h_20a4004d732858 5,23
+首页.md
+  h_20a4004d732858 12,22,26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "cca64e28f67bc54bf0a21fb32315377fb690b7bd",
+  "prompts": {},
+  "humans": {
+    "h_20a4004d732858": {
+      "author": "linnea-lin-00638949 <linnea-lin-00638949@users.noreply.github.com>"
+    }
+  }
+}
