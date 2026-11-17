@@ -1,0 +1,30 @@
+dashboard/index.html
+  h_20a4004d732858 411
+knowledge/training.md
+  h_20a4004d732858 10,17,31
+runs/2026-11-17/plan.json
+  h_20a4004d732858 1-28
+runs/2026-11-17/review.md
+  h_20a4004d732858 1-61
+state/coverage.json
+  h_20a4004d732858 3-4,7-9,13-14,119,121,123-124,392,395,400,405,409
+术语库.md
+  h_20a4004d732858 3,219-231
+课程/训练/2026-11-17-distributed.md
+  h_20a4004d732858 1-206
+课程地图.md
+  h_20a4004d732858 3,5,23
+首页.md
+  h_20a4004d732858 12,22,26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "7a8a8738e4ed96effe00aaa6d48a40689e6bcdf7",
+  "prompts": {},
+  "humans": {
+    "h_20a4004d732858": {
+      "author": "linnea-lin-00638949 <linnea-lin-00638949@users.noreply.github.com>"
+    }
+  }
+}
