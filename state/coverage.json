@@ -1,17 +1,17 @@
 {
   "mode": "course",
-  "updated": "2026-11-09 09:56",
-  "lesson_count": 17,
+  "updated": "2026-11-17 08:43",
+  "lesson_count": 18,
   "review_count": 4,
   "news_count": 0,
-  "current_module": "distributed",
-  "current_module_name": "分布式并行：DP/TP/PP/ZeRO",
-  "last_lesson_path": "课程/训练/2026-11-09-distributed.md",
+  "current_module": "post-training",
+  "current_module_name": "后训练：SFT 与强化学习",
+  "last_lesson_path": "课程/训练/2026-11-17-distributed.md",
   "recent_lesson_paths": [
-    "课程/硬件/2026-11-03-ascend-arch.md",
     "课程/训练/2026-11-04-pretrain-basics.md",
     "课程/训练/2026-11-05-pretrain-basics.md",
-    "课程/训练/2026-11-09-distributed.md"
+    "课程/训练/2026-11-09-distributed.md",
+    "课程/训练/2026-11-17-distributed.md"
   ],
   "review_rounds": 4,
   "modules": {
@@ -116,11 +116,12 @@
       ]
     },
     "distributed": {
-      "status": "进行中",
+      "status": "已学",
       "first_date": "2026-11-09",
-      "last_date": "2026-11-09",
+      "last_date": "2026-11-17",
       "lesson_files": [
-        "课程/训练/2026-11-09-distributed.md"
+        "课程/训练/2026-11-09-distributed.md",
+        "课程/训练/2026-11-17-distributed.md"
       ]
     },
     "post-training": {
@@ -388,20 +389,24 @@
         "Chinchilla",
         "DP/TP/PP",
         "FSDP",
+        "HCCL",
         "ZeRO",
         "loss曲线判读",
+        "ring all-reduce",
         "scaling-law",
         "交叉熵",
         "分布式训练",
         "困惑度",
+        "拓扑映射",
         "数据配比",
         "显存与通信账",
         "显存估算",
         "训练稳定性",
+        "通信重叠",
         "集合通信",
         "预训练"
       ],
-      "last_date": "2026-11-09"
+      "last_date": "2026-11-17"
     }
   }
 }

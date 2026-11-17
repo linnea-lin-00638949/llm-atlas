@@ -1,0 +1,28 @@
+{
+  "module_id": "distributed",
+  "module_name": "分布式并行：DP/TP/PP/ZeRO",
+  "domain_id": "training",
+  "folder": "训练",
+  "day_title": "第 18 课 · 字节怎么走：ring all-reduce、拓扑映射与 HCCL（下）",
+  "goals": [
+    "学完今天，你能把 8 卡的 ring all-reduce 一步一步走完——哪一段是 reduce-scatter、哪一段是 all-gather、每卡每一趟发出多少字节，并由此亲手推出 2(N−1)/N × S 这个系数。",
+    "学完今天，你能说清 8 卡之后加卡收益骤减的三重原因（通信/计算比上升、N/(N−1) 早已饱和、机内 HCCS 到跨机 RoCE 的带宽断层），并用手算的数字判断某个规模该不该继续扩。",
+    "学完今天，你能写出一份拓扑感知的 rank 映射（TP 组不出机框、DP 走机间、rail 对齐），并说清昇腾侧 HCCL 通信域与 vLLM 的 TP 组怎么一一对应，映射写错时会看到什么现象。"
+  ],
+  "pre_test": [
+    "8 卡 ring all-reduce 一个 14 GB 的梯度，每卡一共要发出多少字节？",
+    "reduce-scatter 和 all-gather 各自传多少？两者相加与一次 all-reduce 是什么关系？",
+    "TP=8 的 all-reduce 为什么只能留在机内？机内与跨机带宽差几倍？"
+  ],
+  "focus": [
+    "ring all-reduce 两阶段逐跳拆解：reduce-scatter 走 N−1 步、每卡逐步只留 1/N，all-gather 再走 N−1 步拼回完整张量；每步只传 S/N，合计 2(N−1)/N × S，系数从哪来一目了然。",
+    "为什么 8 卡是拐点：2(N−1)/N 从 8 卡的 0.875 到 512 卡的 0.998 早已饱和，真正恶化的是通信/计算比与拓扑层级——机内 HCCS 与跨机 RoCE/IB 差约一个数量级，越过机框边界就是跳崖而非缓坡。",
+    "拓扑感知的 rank 映射：rank 的排法决定谁跟谁通信；TP 组必须落在同一机框、DP 走机间、rail-optimized 让同号卡走同一条 leaf 交换机，映射写错时表现为 all-reduce 时间接近甚至超过计算时间。",
+    "让通信藏进计算里：梯度分桶、reduce-scatter 与 backward 重叠、ZeRO-3 的 all-gather 预取、用梯度累积与 micro-batch 摊薄——重叠做不好，理论通信量再小也是白算。",
+    "昇腾侧对齐：HCCL 的 world/TP/DP 通信域与 vLLM 的 tensor-parallel-size 一一对应；HCCS 走机内、跨机走 RoCE，验证手段是 HCCL 带宽自测加 profiler 看 all-reduce 占比。"
+  ],
+  "connect_prev": "上一课把 DP/TP/PP/ZeRO 各自切什么、每步要传多少字节算成了账；今天不换切法，而是把那些字节放进 ring 与真实拓扑里，看它们实际怎么走、在哪一段变慢、怎么藏进计算里。",
+  "status": "已学",
+  "lesson_no": 18,
+  "next_up": "后训练：SFT 与强化学习"
+}
