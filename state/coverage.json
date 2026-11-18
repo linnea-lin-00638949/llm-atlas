@@ -1,17 +1,17 @@
 {
   "mode": "course",
-  "updated": "2026-11-17 08:43",
-  "lesson_count": 18,
+  "updated": "2026-11-18 08:40",
+  "lesson_count": 19,
   "review_count": 4,
   "news_count": 0,
   "current_module": "post-training",
   "current_module_name": "后训练：SFT 与强化学习",
-  "last_lesson_path": "课程/训练/2026-11-17-distributed.md",
+  "last_lesson_path": "课程/训练/2026-11-18-post-training.md",
   "recent_lesson_paths": [
-    "课程/训练/2026-11-04-pretrain-basics.md",
     "课程/训练/2026-11-05-pretrain-basics.md",
     "课程/训练/2026-11-09-distributed.md",
-    "课程/训练/2026-11-17-distributed.md"
+    "课程/训练/2026-11-17-distributed.md",
+    "课程/训练/2026-11-18-post-training.md"
   ],
   "review_rounds": 4,
   "modules": {
@@ -125,10 +125,12 @@
       ]
     },
     "post-training": {
-      "status": "planned",
-      "first_date": "",
-      "last_date": "",
-      "lesson_files": []
+      "status": "进行中",
+      "first_date": "2026-11-18",
+      "last_date": "2026-11-18",
+      "lesson_files": [
+        "课程/训练/2026-11-18-post-training.md"
+      ]
     },
     "data": {
       "status": "planned",
@@ -379,23 +381,31 @@
     "training": {
       "learned_modules": [
         "pretrain-basics",
-        "distributed"
+        "distributed",
+        "post-training"
       ],
       "first_seen": {
         "pretrain-basics": "2026-11-04",
-        "distributed": "2026-11-09"
+        "distributed": "2026-11-09",
+        "post-training": "2026-11-18"
       },
       "tags": [
         "Chinchilla",
         "DP/TP/PP",
         "FSDP",
         "HCCL",
+        "PPO",
+        "RLHF",
+        "SFT",
         "ZeRO",
+        "loss mask",
         "loss曲线判读",
+        "packing",
         "ring all-reduce",
         "scaling-law",
         "交叉熵",
         "分布式训练",
+        "后训练",
         "困惑度",
         "拓扑映射",
         "数据配比",
@@ -406,7 +416,7 @@
         "集合通信",
         "预训练"
       ],
-      "last_date": "2026-11-17"
+      "last_date": "2026-11-18"
     }
   }
 }
