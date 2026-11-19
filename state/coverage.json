@@ -1,17 +1,17 @@
 {
   "mode": "course",
-  "updated": "2026-11-18 08:40",
-  "lesson_count": 19,
+  "updated": "2026-11-19 08:48",
+  "lesson_count": 20,
   "review_count": 4,
   "news_count": 0,
-  "current_module": "post-training",
-  "current_module_name": "后训练：SFT 与强化学习",
-  "last_lesson_path": "课程/训练/2026-11-18-post-training.md",
+  "current_module": "data",
+  "current_module_name": "数据工程",
+  "last_lesson_path": "课程/训练/2026-11-19-post-training.md",
   "recent_lesson_paths": [
-    "课程/训练/2026-11-05-pretrain-basics.md",
     "课程/训练/2026-11-09-distributed.md",
     "课程/训练/2026-11-17-distributed.md",
-    "课程/训练/2026-11-18-post-training.md"
+    "课程/训练/2026-11-18-post-training.md",
+    "课程/训练/2026-11-19-post-training.md"
   ],
   "review_rounds": 4,
   "modules": {
@@ -125,11 +125,12 @@
       ]
     },
     "post-training": {
-      "status": "进行中",
+      "status": "已学",
       "first_date": "2026-11-18",
-      "last_date": "2026-11-18",
+      "last_date": "2026-11-19",
       "lesson_files": [
-        "课程/训练/2026-11-18-post-training.md"
+        "课程/训练/2026-11-18-post-training.md",
+        "课程/训练/2026-11-19-post-training.md"
       ]
     },
     "data": {
@@ -392,10 +393,13 @@
       "tags": [
         "Chinchilla",
         "DP/TP/PP",
+        "DPO",
         "FSDP",
+        "GRPO",
         "HCCL",
         "PPO",
         "RLHF",
+        "RLVR",
         "SFT",
         "ZeRO",
         "loss mask",
@@ -416,7 +420,7 @@
         "集合通信",
         "预训练"
       ],
-      "last_date": "2026-11-18"
+      "last_date": "2026-11-19"
     }
   }
 }

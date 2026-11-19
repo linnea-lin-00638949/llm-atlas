@@ -1,0 +1,28 @@
+{
+  "module_id": "post-training",
+  "module_name": "后训练：SFT 与强化学习",
+  "domain_id": "training",
+  "folder": "训练",
+  "day_title": "第 20 课 · 从 PPO 到 DPO 与 GRPO：把奖励模型和 critic 都省掉（下）",
+  "goals": [
+    "学完今天，你能把 DPO 的损失从「最大化奖励减 KL」这个目标一步步推出来，说清隐式奖励 β·log(π_θ/π_ref) 是怎么把奖励模型消掉的，以及这个推导依赖的三个前提（BT 偏好模型、最优策略有闭式解、π_ref 近似最优策略）。",
+    "学完今天，你能算清一个偏好对在 DPO 里要过几次前向、β 从 0.1 调到 1 会改变什么，并诊断「chosen 和 rejected 的 logprob 一起往下掉」这个经典故障——知道它是分布外偏好对造成的 likelihood displacement，而不是学习率太大。",
+    "学完今天，你能写出 GRPO 的组内优势公式 A_i=(r_i−mean(r))/std(r)，说清它用组内均值替掉 critic 换来多少显存与多少额外采样，并能按「要不要奖励模型、要不要在线 rollout、偏好数据能否离线复用」三个维度给 DPO/PPO/GRPO 做选型。"
+  ],
+  "pre_test": [
+    "PPO 的 KL 惩罚项拴住的是哪两个分布？β 调大、调小各会出什么症状？",
+    "奖励模型输出一个标量，为什么说它只是偏好的代理而不是偏好本身？",
+    "on-policy 意味着同一批 rollout 数据能拿来做几次梯度更新？为什么？"
+  ],
+  "focus": [
+    "DPO 的推导链条：把 KL 约束下的最优策略闭式解代回目标，得到 r(x,y)=β·log(π_θ(y|x)/π_ref(y|x))，奖励模型被「隐式化」；同时要讲清这一步不是免费的——它把「在线探索」换成了「离线偏好对」，覆盖不到的区域没有约束。",
+    "DPO 损失与计算账：L=−log σ(β·log(π_θ(y_w)/π_ref(y_w)) − β·log(π_θ(y_l)/π_ref(y_l)))，一个偏好对 4 次前向（chosen/rejected × policy/ref）、参考模型冻结且必须等于训练起点；β 是拴住策略的绳子，与 PPO 里的 β 是同一个角色、不同位置。",
+    "DPO 的三个真实故障：分布外偏好对导致 chosen 与 rejected 的 logprob 同时下降（likelihood displacement，表现为「训练 loss 降、模型变差」）、长度偏置（长回答天然 logprob 更低，DPO 会反向偏爱短答）、以及偏好数据只覆盖被标注过的分布。诊断方法是同时打印 chosen/rejected 的 logprob 与长度。",
+    "GRPO：同一 prompt 采 G 条、组内标准化当基线，A_i=(r_i−mean)/std，critic 那份 84 GB 直接省掉；代价是 G 倍采样（rollout 变贵）与组内全对/全错时优势归零；KL 用 k3 估计直接写进 loss，不再靠 reward shaping。",
+    "三者选型与两阶段账：DPO 离线、两模型、无 rollout，显存最低但能力上限受数据限制；PPO 四模型 + rollout，最贵最灵活；GRPO 三模型（策略/参考/奖励或规则验证器）+ 大 G，是 RLVR 路线（可验证奖励，如数学答案对错）的主力。接回推理侧：GRPO 训出的长 CoT 会直接抬高线上输出长度预算与 TPOT 成本。"
+  ],
+  "connect_prev": "上一课把 SFT 的 loss mask 与 RLHF 四阶段的显存账算到了每卡 GB，今天顺着 PPO 那个 KL 约束往下走：把奖励模型消掉就是 DPO，把 critic 消掉就是 GRPO，最后用同一套 max(rollout, update) 的算法给三者排座次。",
+  "status": "已学",
+  "lesson_no": 20,
+  "next_up": "数据工程"
+}
