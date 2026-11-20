@@ -1,17 +1,17 @@
 {
   "mode": "course",
-  "updated": "2026-11-19 08:48",
-  "lesson_count": 20,
+  "updated": "2026-11-20 09:35",
+  "lesson_count": 21,
   "review_count": 4,
   "news_count": 0,
-  "current_module": "data",
-  "current_module_name": "数据工程",
-  "last_lesson_path": "课程/训练/2026-11-19-post-training.md",
+  "current_module": "moe",
+  "current_module_name": "MoE 稀疏化",
+  "last_lesson_path": "课程/训练/2026-11-20-data.md",
   "recent_lesson_paths": [
-    "课程/训练/2026-11-09-distributed.md",
     "课程/训练/2026-11-17-distributed.md",
     "课程/训练/2026-11-18-post-training.md",
-    "课程/训练/2026-11-19-post-training.md"
+    "课程/训练/2026-11-19-post-training.md",
+    "课程/训练/2026-11-20-data.md"
   ],
   "review_rounds": 4,
   "modules": {
@@ -134,10 +134,12 @@
       ]
     },
     "data": {
-      "status": "planned",
-      "first_date": "",
-      "last_date": "",
-      "lesson_files": []
+      "status": "已学",
+      "first_date": "2026-11-20",
+      "last_date": "2026-11-20",
+      "lesson_files": [
+        "课程/训练/2026-11-20-data.md"
+      ]
     },
     "moe": {
       "status": "planned",
@@ -383,12 +385,14 @@
       "learned_modules": [
         "pretrain-basics",
         "distributed",
-        "post-training"
+        "post-training",
+        "data"
       ],
       "first_seen": {
         "pretrain-basics": "2026-11-04",
         "distributed": "2026-11-09",
-        "post-training": "2026-11-18"
+        "post-training": "2026-11-18",
+        "data": "2026-11-20"
       },
       "tags": [
         "Chinchilla",
@@ -397,6 +401,7 @@
         "FSDP",
         "GRPO",
         "HCCL",
+        "MinHash",
         "PPO",
         "RLHF",
         "RLVR",
@@ -409,18 +414,22 @@
         "scaling-law",
         "交叉熵",
         "分布式训练",
+        "合成数据",
         "后训练",
         "困惑度",
         "拓扑映射",
+        "数据去重",
+        "数据工程",
         "数据配比",
         "显存与通信账",
         "显存估算",
         "训练稳定性",
+        "质量过滤",
         "通信重叠",
         "集合通信",
         "预训练"
       ],
-      "last_date": "2026-11-19"
+      "last_date": "2026-11-20"
     }
   }
 }
