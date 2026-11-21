@@ -1,17 +1,17 @@
 {
   "mode": "course",
-  "updated": "2026-11-20 09:35",
-  "lesson_count": 21,
+  "updated": "2026-11-21 08:44",
+  "lesson_count": 22,
   "review_count": 4,
   "news_count": 0,
-  "current_module": "moe",
-  "current_module_name": "MoE 稀疏化",
-  "last_lesson_path": "课程/训练/2026-11-20-data.md",
+  "current_module": "moe-training",
+  "current_module_name": "MoE 训练",
+  "last_lesson_path": "课程/模型演进/2026-11-21-moe.md",
   "recent_lesson_paths": [
-    "课程/训练/2026-11-17-distributed.md",
     "课程/训练/2026-11-18-post-training.md",
     "课程/训练/2026-11-19-post-training.md",
-    "课程/训练/2026-11-20-data.md"
+    "课程/训练/2026-11-20-data.md",
+    "课程/模型演进/2026-11-21-moe.md"
   ],
   "review_rounds": 4,
   "modules": {
@@ -142,10 +142,12 @@
       ]
     },
     "moe": {
-      "status": "planned",
-      "first_date": "",
-      "last_date": "",
-      "lesson_files": []
+      "status": "已学",
+      "first_date": "2026-11-21",
+      "last_date": "2026-11-21",
+      "lesson_files": [
+        "课程/模型演进/2026-11-21-moe.md"
+      ]
     },
     "moe-training": {
       "status": "planned",
@@ -283,25 +285,33 @@
     },
     "model-evolution": {
       "learned_modules": [
-        "transformer-foundation"
+        "transformer-foundation",
+        "moe"
       ],
       "first_seen": {
-        "transformer-foundation": "2026-11-03"
+        "transformer-foundation": "2026-11-03",
+        "moe": "2026-11-21"
       },
       "tags": [
         "GQA",
         "KV cache",
         "LLM 架构",
+        "MoE",
         "QKV",
         "RoPE",
         "attention",
+        "decode 带宽",
         "decoder-only",
         "multi-head attention",
         "transformer",
+        "专家并行",
+        "容量因子",
         "模型演进",
-        "残差连接"
+        "残差连接",
+        "稀疏激活",
+        "负载均衡"
       ],
-      "last_date": "2026-11-03"
+      "last_date": "2026-11-21"
     },
     "inference-frameworks": {
       "learned_modules": [

@@ -1,0 +1,28 @@
+{
+  "module_id": "moe",
+  "module_name": "MoE 稀疏化",
+  "domain_id": "model-evolution",
+  "folder": "模型演进",
+  "day_title": "第 22 课 · MoE 稀疏化：同样算力怎么装更多参数",
+  "goals": [
+    "学完今天，你能手算 MoE 的容量账与算力账：分清总参数与激活参数，推出 top-k 路由下每 token 的 FLOPs ≈ k/N 倍 dense，并说清省的是算力、省不了的仍是权重显存与 decode 带宽。",
+    "学完今天，你能完整讲清 router 的全链路——从 hidden state 到 gate logits、top-k 选择、权重归一化、加权求和——并解释这个离散选择为什么不可微、梯度只能从被选中的专家与 gate 权重回流。",
+    "学完今天，你能识别路由塌缩并说出每种解法的靶点：用负载分布与 auxiliary loss 判断专家坍缩或热门专家堆积，说清容量因子 drop、噪声、细粒度专家 + 共享专家各治什么病。"
+  ],
+  "pre_test": [
+    "Transformer 每层里参数最多的是哪一部分？FFN 的中间维一般是 hidden 的几倍？",
+    "softmax 在 attention 里起什么作用？如果只保留 top-2 再重新归一化，行为会怎么变？",
+    "一个模型参数量翻 8 倍、但每 token 计算量不变，decode 阶段的显存带宽压力会怎么变？"
+  ],
+  "focus": [
+    "总参数 vs 激活参数：MoE 把 FFN 复制成 N 个专家、每 token 只走 top-k 个，容量约 N 倍、算力约 k/N 倍；这是「用显存换容量」不是「用显存换算力」，decode 依旧是带宽题。",
+    "router 全链路：gate = softmax(W_r·x) 或 sigmoid → top-k → 权重归一化 → 按权重加权专家输出；路由是不可微的离散选择，梯度只从选中专家与 gate 权重两条路回流，这是 MoE 训练不稳的根源。",
+    "容量与 drop：专家容量 = ceil(tokens×k / 专家数 × capacity factor)，超容的 token 被丢或溢出到次优专家；训练丢梯度、推理丢质量，dropless 用重排与缓冲区换掉 drop，代价是某卡空转。",
+    "负载均衡与专家坍缩：auxiliary loss（Switch 的 importance + load 两项）、router 噪声、z-loss 各自治什么；DeepSeekMoE 的细粒度专家 + 共享专家把通用知识与专精拆开，减少专家冗余。",
+    "工程账：专家并行的 all-to-all 取代 all-reduce 成为新瓶颈，grouped GEMM 与批量不均衡决定实际吞吐；推理侧 prefill 吃算力、decode 吃带宽 + 通信，两段对 MoE 的感受完全不同。"
+  ],
+  "connect_prev": "上一课把「数据决定能力分布」讲透了，这一课接着回答「同样的算力能装下多少参数」——数据管喂什么，MoE 管单位算力的容量上限。",
+  "status": "已学",
+  "lesson_no": 22,
+  "next_up": "MoE 训练"
+}

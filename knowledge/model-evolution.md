@@ -7,14 +7,14 @@ tags: [domain/model-evolution]
 
 > 理解模型长什么样、为什么这样设计、能力从哪里来。
 
-**进度**：1/7 个模块 · 最近学习 2026-11-03 · 累计标签 11 个
+**进度**：2/7 个模块 · 最近学习 2026-11-21 · 累计标签 17 个
 
 ## 课程模块
 
 | 模块 | 状态 | 首次学习 | 笔记 |
 | --- | --- | --- | --- |
 | Transformer 与 decoder-only 范式 | ✅ 已学 | 2026-11-03 | [[2026-11-03-transformer-foundation-2|2026-11-03]]、[[2026-11-03-transformer-foundation|2026-11-03]] |
-| MoE 稀疏化 | ⬜ 待学 | — | — |
+| MoE 稀疏化 | ✅ 已学 | 2026-11-21 | [[2026-11-21-moe|2026-11-21]] |
 | 推理模型与 test-time compute | ⬜ 待学 | — | — |
 | 长上下文与记忆 | ⬜ 待学 | — | — |
 | 多模态 | ⬜ 待学 | — | — |
@@ -27,6 +27,7 @@ tags: [domain/model-evolution]
 | --- | --- | --- |
 | [[2026-11-03-transformer-foundation-2|2026-11-03]] | 第 4 课 · Transformer 与 decoder-only 范式（下） | Transformer 与 decoder-only 范式 |
 | [[2026-11-03-transformer-foundation|2026-11-03]] | 第 3 课 · Transformer 与 decoder-only 范式（上） | Transformer 与 decoder-only 范式 |
+| [[2026-11-21-moe|2026-11-21]] | 第 22 课 · MoE 稀疏化：同样算力怎么装更多参数 | MoE 稀疏化 |
 
 ## 关联
 
