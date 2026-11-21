@@ -1,0 +1,30 @@
+dashboard/index.html
+  h_20a4004d732858 411
+knowledge/model-evolution.md
+  h_20a4004d732858 10,17,30
+runs/2026-11-21/plan.json
+  h_20a4004d732858 1-28
+runs/2026-11-21/review.md
+  h_20a4004d732858 1-59
+state/coverage.json
+  h_20a4004d732858 3-4,7-9,13-14,145-150,288-289,292-293,299,303,307-308,310-312,314
+术语库.md
+  h_20a4004d732858 3,57-78
+课程/模型演进/2026-11-21-moe.md
+  h_20a4004d732858 1-239
+课程地图.md
+  h_20a4004d732858 3,5,26
+首页.md
+  h_20a4004d732858 12,22,26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "1d99b9298ff0d53f93ddac2395dcd9de406b0bdc",
+  "prompts": {},
+  "humans": {
+    "h_20a4004d732858": {
+      "author": "linnea-lin-00638949 <linnea-lin-00638949@users.noreply.github.com>"
+    }
+  }
+}
