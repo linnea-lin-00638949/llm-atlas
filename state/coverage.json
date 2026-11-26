@@ -1,17 +1,17 @@
 {
   "mode": "course",
-  "updated": "2026-11-21 08:44",
-  "lesson_count": 22,
+  "updated": "2026-11-26 10:38",
+  "lesson_count": 23,
   "review_count": 4,
   "news_count": 0,
-  "current_module": "moe-training",
-  "current_module_name": "MoE 训练",
-  "last_lesson_path": "课程/模型演进/2026-11-21-moe.md",
+  "current_module": "eval",
+  "current_module_name": "评估与红队",
+  "last_lesson_path": "课程/训练/2026-11-26-moe-training.md",
   "recent_lesson_paths": [
-    "课程/训练/2026-11-18-post-training.md",
     "课程/训练/2026-11-19-post-training.md",
     "课程/训练/2026-11-20-data.md",
-    "课程/模型演进/2026-11-21-moe.md"
+    "课程/模型演进/2026-11-21-moe.md",
+    "课程/训练/2026-11-26-moe-training.md"
   ],
   "review_rounds": 4,
   "modules": {
@@ -150,10 +150,12 @@
       ]
     },
     "moe-training": {
-      "status": "planned",
-      "first_date": "",
-      "last_date": "",
-      "lesson_files": []
+      "status": "已学",
+      "first_date": "2026-11-26",
+      "last_date": "2026-11-26",
+      "lesson_files": [
+        "课程/训练/2026-11-26-moe-training.md"
+      ]
     },
     "eval": {
       "status": "planned",
@@ -396,32 +398,39 @@
         "pretrain-basics",
         "distributed",
         "post-training",
-        "data"
+        "data",
+        "moe-training"
       ],
       "first_seen": {
         "pretrain-basics": "2026-11-04",
         "distributed": "2026-11-09",
         "post-training": "2026-11-18",
-        "data": "2026-11-20"
+        "data": "2026-11-20",
+        "moe-training": "2026-11-26"
       },
       "tags": [
         "Chinchilla",
         "DP/TP/PP",
         "DPO",
+        "DeepSeek-V3",
         "FSDP",
         "GRPO",
         "HCCL",
         "MinHash",
+        "MoE",
         "PPO",
         "RLHF",
         "RLVR",
         "SFT",
         "ZeRO",
+        "all-to-all",
+        "dropless",
         "loss mask",
         "loss曲线判读",
         "packing",
         "ring all-reduce",
         "scaling-law",
+        "专家并行",
         "交叉熵",
         "分布式训练",
         "合成数据",
@@ -435,11 +444,12 @@
         "显存估算",
         "训练稳定性",
         "质量过滤",
+        "路由稳定性",
         "通信重叠",
         "集合通信",
         "预训练"
       ],
-      "last_date": "2026-11-20"
+      "last_date": "2026-11-26"
     }
   }
 }
