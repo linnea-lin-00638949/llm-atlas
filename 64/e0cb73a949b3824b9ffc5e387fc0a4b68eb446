@@ -1,0 +1,30 @@
+dashboard/index.html
+  h_20a4004d732858 411
+knowledge/training.md
+  h_20a4004d732858 10,20,35
+runs/2026-11-26/plan.json
+  h_20a4004d732858 1-29
+runs/2026-11-26/review.md
+  h_20a4004d732858 1-59
+state/coverage.json
+  h_20a4004d732858 3-4,7-9,13-14,153-158,401-402,408-409,415,420,426-427,433,447,452
+术语库.md
+  h_20a4004d732858 3,325-341
+课程/训练/2026-11-26-moe-training.md
+  h_20a4004d732858 1-229
+课程地图.md
+  h_20a4004d732858 3,5,27
+首页.md
+  h_20a4004d732858 12,22,26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "64e0cb73a949b3824b9ffc5e387fc0a4b68eb446",
+  "prompts": {},
+  "humans": {
+    "h_20a4004d732858": {
+      "author": "linnea-lin-00638949 <linnea-lin-00638949@users.noreply.github.com>"
+    }
+  }
+}
